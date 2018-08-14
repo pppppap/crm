@@ -23,5 +23,9 @@ public class OrgTest {
         Employee employee = employeeMapper.selectByPrimaryKey(1);
         System.out.println(employee);
     }
-
+    @Test
+    public void test2(){
+        Employee employee = employeeMapper.selectByPrimaryKey(2);
+        System.out.println(employee);
+    }
 }
