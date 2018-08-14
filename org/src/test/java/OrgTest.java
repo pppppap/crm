@@ -20,7 +20,8 @@ public class OrgTest {
 
     @Test
     public void test1() {
-        Employee employee = employeeMapper.selectOne(1);
+        Employee employee = employeeMapper.selectByPrimaryKey(1);
         System.out.println(employee);
     }
+
 }

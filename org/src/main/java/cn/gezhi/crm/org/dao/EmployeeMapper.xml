@@ -9,6 +9,8 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
   </resultMap>
+
+
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">

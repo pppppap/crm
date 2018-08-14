@@ -60,4 +60,16 @@ public class Employee {
     public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", careerId=" + careerId +
+                ", depId=" + depId +
+                ", userId=" + userId +
+                ", name='" + name + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                '}';
+    }
 }

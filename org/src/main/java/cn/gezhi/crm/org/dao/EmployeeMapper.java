@@ -2,7 +2,9 @@ package cn.gezhi.crm.org.dao;
 
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.EmployeeExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeMapper {
@@ -27,4 +29,5 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
+
 }
