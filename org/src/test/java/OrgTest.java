@@ -38,5 +38,9 @@ public class OrgTest {
 
 
     }
-
+   @Test
+    public void testDelete(){
+       int i = departmentMapper.deleteByPrimaryKey(5);
+       System.out.println(i);
+   }
 }

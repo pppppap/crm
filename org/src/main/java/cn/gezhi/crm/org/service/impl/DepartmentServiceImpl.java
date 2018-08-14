@@ -23,6 +23,23 @@ public class DepartmentServiceImpl implements DepartmentService {
      **/
 
     public Department getOne(int id) {
+
         return departmentMapper.selectByPrimaryKey(id);
+    }
+/**
+ *TODO 根据ID删除一个部门
+ *@param id 部门的编号
+ *@return  受影响的行数
+ **/
+    public int deleteOne(int id) {
+        return departmentMapper.deleteByPrimaryKey(id);
+    }
+/**
+ *TODO
+ *@param
+ *@return
+ **/
+    public int save(Department department) {
+        return departmentMapper.insert(department);
     }
 }
