@@ -1,15 +1,17 @@
 package cn.gezhi.crm.org.entity;
 
-/**
- * TODO
- *
- * @author pppppap
- */
 public class Employee {
     private Integer id;
-    private Career career;
-    private Development development;
+
+    private Integer careerId;
+
+    private Integer depId;
+
+    private Integer userId;
+
     private String name;
+
+    private Integer deleteFlag;
 
     public Integer getId() {
         return id;
@@ -19,20 +21,28 @@ public class Employee {
         this.id = id;
     }
 
-    public Career getCareer() {
-        return career;
+    public Integer getCareerId() {
+        return careerId;
     }
 
-    public void setCareer(Career career) {
-        this.career = career;
+    public void setCareerId(Integer careerId) {
+        this.careerId = careerId;
     }
 
-    public Development getDevelopment() {
-        return development;
+    public Integer getDepId() {
+        return depId;
     }
 
-    public void setDevelopment(Development development) {
-        this.development = development;
+    public void setDepId(Integer depId) {
+        this.depId = depId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -40,16 +50,14 @@ public class Employee {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", career=" + career +
-                ", development=" + development +
-                ", name='" + name + '\'' +
-                '}';
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 }
