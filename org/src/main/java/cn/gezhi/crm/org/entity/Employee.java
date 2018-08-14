@@ -142,4 +142,24 @@ public class Employee {
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", careerId=" + careerId +
+                ", depId=" + depId +
+                ", name='" + name + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", inDate=" + inDate +
+                ", outDate=" + outDate +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", idNo='" + idNo + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
+                '}';
+    }
 }
