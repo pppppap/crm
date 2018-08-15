@@ -1,10 +1,8 @@
 package cn.gezhi.crm.org.service;
 
 import cn.gezhi.crm.org.entity.Employee;
-import cn.gezhi.crm.org.entity.EmployeeExample;
 import cn.gezhi.crm.org.entity.PageModel;
-import org.springframework.stereotype.Service;
-
+import cn.gezhi.crm.org.entity.EmployeeExample;
 import java.util.List;
 
 /**

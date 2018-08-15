@@ -62,6 +62,15 @@
             <li><cite></cite><a href="addcareer.ftl" target="rightFrame">增加员工</a></li>
         </ul>
     </dd>
+    <dd>
+        <div class="title">
+            <span><img src="images/leftico02.png"/></span>用户管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="/show_user" target="rightFrame">用户列表</a></li>
+            <li><cite></cite><a href="/add_user" target="rightFrame">新增用户</a></li>
+        </ul>
+    </dd>
 </dl>
 </body>
 </html>

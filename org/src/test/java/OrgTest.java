@@ -1,7 +1,4 @@
-import cn.gezhi.crm.org.dao.DepartmentMapper;
-import cn.gezhi.crm.org.entity.Department;
-import cn.gezhi.crm.org.entity.DepartmentExample;
-import cn.gezhi.crm.org.service.DepartmentService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +16,12 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-placeholder.xml","classpath:spring/application*.xml"})
 public class OrgTest {
-@Autowired
-private DepartmentService departmentService;
     @Test
-    public  void testExample(){
-        DepartmentExample example =new DepartmentExample();
-        List<Department> all = departmentService.getAll(example);
-        for (Department department : all) {
-            System.out.println(department);
-        }
+    public void test1() {
+     
     }
+
+
+
 }
+
