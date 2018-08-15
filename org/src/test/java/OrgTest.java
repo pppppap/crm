@@ -1,44 +1,32 @@
-import cn.gezhi.crm.org.entity.Employee;
-import cn.gezhi.crm.org.entity.EmployeeExample;
-import cn.gezhi.crm.org.entity.PageModel;
-import cn.gezhi.crm.org.service.EmployeeService;
+import cn.gezhi.crm.org.dao.DepartmentMapper;
+import cn.gezhi.crm.org.entity.Department;
+import cn.gezhi.crm.org.entity.DepartmentExample;
+import cn.gezhi.crm.org.service.DepartmentService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 /**
  * TODO
  *
- * @author pppppap
+ * @author Jo
+ * @date 2018/8/15
  */
-
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
+@ContextConfiguration(locations = {"classpath:spring-placeholder.xml","classpath:spring/application*.xml"})
 public class OrgTest {
-    @Autowired
-    private EmployeeService employeeService;
-
+@Autowired
+private DepartmentService departmentService;
     @Test
-    public void test1() {
-        PageModel<Employee> pageModel = employeeService.getEmployeePage(1, 3);
-        System.out.println(pageModel);
-        System.out.println(pageModel.getTotalCount());
-        System.out.println(pageModel.getCurrentPage());
-        for (Employee employee : pageModel.getList()) {
-            System.out.println(employee);
+    public  void testExample(){
+        DepartmentExample example =new DepartmentExample();
+        List<Department> all = departmentService.getAll(example);
+        for (Department department : all) {
+            System.out.println(department);
         }
-    }
-
-    @Test
-    public void test2() {
-        Employee employee = new Employee();
-        employee.setCareerId(2);
-        employee.setDepId(2);
-        employee.setName("张四");
-        employee.setDeleteFlag(0);
-        int n = employeeService.save(employee);
-        System.out.println(n);
     }
 }
