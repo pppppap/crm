@@ -3,7 +3,9 @@ package cn.gezhi.crm.org.service.impl;
 import cn.gezhi.crm.org.dao.DepartmentMapper;
 import cn.gezhi.crm.org.entity.Department;
 import cn.gezhi.crm.org.entity.DepartmentExample;
+import cn.gezhi.crm.org.entity.PageModel;
 import cn.gezhi.crm.org.service.DepartmentService;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,5 +82,24 @@ public class DepartmentServiceImpl implements DepartmentService {
         DepartmentExample.Criteria criteria = example.createCriteria();
         criteria.andDepNameLike(keywords);
         return departmentMapper.selectByExample(example);
+    }
+/**
+ *TODO  查询所有的部门
+ *@param example 全部列
+ *@return  部门集合
+ **/
+    public List<Department> getAll(DepartmentExample example) {
+        return departmentMapper.selectByExample(example);
+    }
+
+    public PageModel<Department> getDepartmentPage(int page, int pageSize) {
+        return getByExamplePage(page,pageSize,null);
+    }
+
+    public PageModel<Department> getByExamplePage(int page, int pageSize, DepartmentExample example) {
+        PageHelper.startPage(page,pageSize);
+        List<Department> departments = departmentMapper.selectByExample(example);
+
+        return new PageModel<Department>(departments);
     }
 }

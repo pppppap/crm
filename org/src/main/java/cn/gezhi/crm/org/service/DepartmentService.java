@@ -1,6 +1,6 @@
 package cn.gezhi.crm.org.service;
 
-import cn.gezhi.crm.org.entity.Department;
+import cn.gezhi.crm.org.entity.*;
 
 import java.util.List;
 
@@ -12,4 +12,7 @@ public interface DepartmentService {
  int updateSelective(Department department);
  int saveSelective(Department department);
  List<Department> findSome(String keywords);
+ List<Department> getAll(DepartmentExample example);
+ PageModel<Department> getDepartmentPage(int page, int pageSize);
+ PageModel<Department> getByExamplePage(int page, int pageSize, DepartmentExample example);
 }
