@@ -1,14 +1,11 @@
 package cn.gezhi.crm.org.entity;
 
-/**
- * TODO
- *
- * @author pppppap
- */
 public class Career {
     private Integer id;
-    private String name;
-    private Integer deleteFlag;
+
+    private String careerName;
+
+    private String careerDesc;
 
     public Integer getId() {
         return id;
@@ -18,28 +15,37 @@ public class Career {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getCareerName() {
+        return careerName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCareerName(String careerName) {
+        this.careerName = careerName == null ? null : careerName.trim();
     }
 
-    public Integer getDeleteFlag() {
-        return deleteFlag;
+    public String getCareerDesc() {
+        return careerDesc;
     }
 
-    public void setDeleteFlag(Integer deleteFlag) {
-        this.deleteFlag = deleteFlag;
+    public void setCareerDesc(String careerDesc) {
+        this.careerDesc = careerDesc == null ? null : careerDesc.trim();
+    }
+
+    public Career() {
+    }
+
+    public Career(Integer id, String careerName, String careerDesc) {
+        this.id = id;
+        this.careerName = careerName;
+        this.careerDesc = careerDesc;
     }
 
     @Override
     public String toString() {
         return "Career{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", deleteFlag=" + deleteFlag +
+                ", careerName='" + careerName + '\'' +
+                ", careerDesc='" + careerDesc + '\'' +
                 '}';
     }
 }

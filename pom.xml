@@ -12,6 +12,7 @@
         <module>org</module>
         <module>gateway</module>
         <module>gateway</module>
+        <module>MybatisGenerator</module>
     </modules>
 
     <properties>
