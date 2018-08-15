@@ -11,13 +11,11 @@
     <modules>
         <module>org</module>
         <module>gateway</module>
-        <module>gateway</module>
     </modules>
 
     <properties>
         <crm.version>1.0.0</crm.version>
         <spring.version>5.0.7.RELEASE</spring.version>
-        <hibernate.version>5.2.17.Final</hibernate.version>
         <mysql.driver.version>5.1.40</mysql.driver.version>
         <shiro.version>1.4.0</shiro.version>
         <jackson.version>2.9.5</jackson.version>
@@ -71,9 +69,10 @@
             <artifactId>spring-web</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架 -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId><!-- Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架 -->
+            <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <!-- Spring web相关依赖 end -->
@@ -136,21 +135,21 @@
         <!-- servlet end -->
 
         <!-- shiro start -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-web</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.shiro</groupId>-->
+            <!--<artifactId>shiro-core</artifactId>-->
+            <!--<version>${shiro.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.shiro</groupId>-->
+            <!--<artifactId>shiro-spring</artifactId>-->
+            <!--<version>${shiro.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.shiro</groupId>-->
+            <!--<artifactId>shiro-web</artifactId>-->
+            <!--<version>${shiro.version}</version>-->
+        <!--</dependency>-->
         <!-- shiro end -->
 
         <!-- jackson start -->
