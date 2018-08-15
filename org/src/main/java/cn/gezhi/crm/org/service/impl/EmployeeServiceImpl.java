@@ -5,14 +5,9 @@ import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.EmployeeExample;
 import cn.gezhi.crm.org.entity.PageModel;
 import cn.gezhi.crm.org.service.EmployeeService;
-<<<<<<< HEAD
-import com.github.pagehelper.Page;
-=======
->>>>>>> crm/master
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -27,7 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeMapper employeeMapper;
 
     public PageModel<Employee> getEmployeePage(int page, int pageSize) {
-<<<<<<< HEAD
         PageHelper.startPage(page, pageSize);
         EmployeeExample employeeExample = new EmployeeExample();
         employeeExample.setOrderByClause("id");
@@ -35,13 +29,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> employees = employeeMapper.selectByExample(employeeExample);
         PageModel<Employee> pageModel = new PageModel<Employee>(employees);
         return pageModel;
-    }
-
-    public Employee selectById(int id) {
-        return employeeMapper.selectByPrimaryKey(id);
-    }
-=======
-        return getByExamplePage(page, pageSize, null);
     }
 
     public Employee getById(int id) {
@@ -65,6 +52,4 @@ public class EmployeeServiceImpl implements EmployeeService {
     public int save(Employee employee) {
         return employeeMapper.insert(employee);
     }
-
->>>>>>> crm/master
 }

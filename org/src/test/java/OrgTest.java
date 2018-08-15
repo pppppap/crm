@@ -1,10 +1,8 @@
 import cn.gezhi.crm.org.entity.Employee;
-<<<<<<< HEAD
-=======
-import cn.gezhi.crm.org.entity.EmployeeExample;
->>>>>>> crm/master
 import cn.gezhi.crm.org.entity.PageModel;
+import cn.gezhi.crm.org.entity.User;
 import cn.gezhi.crm.org.service.EmployeeService;
+import cn.gezhi.crm.org.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +20,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class OrgTest {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private UserServiceImpl userService;
 
     @Test
     public void test1() {
-<<<<<<< HEAD
         PageModel<Employee> pageModel = employeeService.getEmployeePage(1, 2);
-        System.out.println(pageModel);
-        System.out.println(pageModel.getTotalCount());
-        System.out.println(pageModel.getCurrentPage());
-        for(Employee employee:pageModel.getList()){
-            System.out.println(employee);
-        }
-    }
-=======
-        PageModel<Employee> pageModel = employeeService.getEmployeePage(1, 3);
         System.out.println(pageModel);
         System.out.println(pageModel.getTotalCount());
         System.out.println(pageModel.getCurrentPage());
@@ -54,5 +44,14 @@ public class OrgTest {
         int n = employeeService.save(employee);
         System.out.println(n);
     }
->>>>>>> crm/master
+
+    @Test
+    public void test3() {
+//        User user = userService.getById(1);
+//        System.out.println(user);
+        PageModel<User> pageModel = userService.getUserPage(2, 2);
+        for (User user : pageModel.getList()) {
+            System.out.println(user);
+        }
+    }
 }
