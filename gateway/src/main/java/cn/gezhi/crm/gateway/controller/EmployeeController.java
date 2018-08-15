@@ -4,16 +4,14 @@ import cn.gezhi.crm.gateway.dto.JsonResult;
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.PageModel;
 import cn.gezhi.crm.org.service.EmployeeService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * TODO
@@ -36,8 +34,8 @@ public class EmployeeController {
 
     @RequestMapping(value = "/delete_employee", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonResult delete_employee(HttpServletRquest request) {
-        int id = Integer.parseInt(request.getParameters("id"));
+    public JsonResult delete_employee(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
         int n = employeeService.delete(id);
         JsonResult result = new JsonResult();
         if (n > 0) {

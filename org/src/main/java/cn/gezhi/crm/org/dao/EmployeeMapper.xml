@@ -3,8 +3,8 @@
 <mapper namespace="cn.gezhi.crm.org.dao.EmployeeMapper">
     <resultMap id="BaseResultMap" type="cn.gezhi.crm.org.entity.Employee">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="career_id" property="careerId" jdbcType="INTEGER"/>
-        <result column="dep_id" property="depId" jdbcType="INTEGER"/>
+        <!--<result column="career_id" property="careerId" jdbcType="INTEGER"/>-->
+        <!--<result column="dep_id" property="depId" jdbcType="INTEGER"/>-->
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER"/>
         <result column="in_date" property="inDate" jdbcType="DATE"/>
@@ -16,7 +16,30 @@
         <result column="age" property="age" jdbcType="INTEGER"/>
         <result column="sex" property="sex" jdbcType="CHAR"/>
         <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <association property="career" column="career_id" javaType="cn.gezhi.crm.org.entity.Career" select="select_career"/>
+        <association property="department" column="dep_id" select="select_department"/>
     </resultMap>
+
+    <select id="select_department" resultMap="DepartmentMap">
+        select id,dep_name,dep_desc from department where id = #{id}
+    </select>
+    <resultMap id="DepartmentMap" type="cn.gezhi.crm.org.entity.Department" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="dep_name" property="depName" jdbcType="VARCHAR" />
+        <result column="dep_desc" property="depDesc" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <select id="select_career" resultMap="CareerMap">
+        select id,career_name,career_desc from career where id = #{id}
+    </select>
+    <resultMap id="CareerMap" type="cn.gezhi.crm.org.entity.Career" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="career_name" property="careerName" jdbcType="VARCHAR" />
+        <result column="career_desc" property="careerDesc" jdbcType="VARCHAR" />
+    </resultMap>
+
+
 
     <sql id="Example_Where_Clause">
         <where>
