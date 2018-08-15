@@ -1,5 +1,6 @@
-import cn.gezhi.crm.org.dao.EmployeeMapper;
 import cn.gezhi.crm.org.entity.Employee;
+import cn.gezhi.crm.org.entity.PageModel;
+import cn.gezhi.crm.org.service.EmployeeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,16 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
 public class OrgTest {
     @Autowired
-    private EmployeeMapper employeeMapper;
+    private EmployeeService employeeService;
 
     @Test
     public void test1() {
-        Employee employee = employeeMapper.selectByPrimaryKey(1);
-        System.out.println(employee);
+        PageModel<Employee> pageModel = employeeService.getEmployeePage(1, 2);
+        System.out.println(pageModel);
+        System.out.println(pageModel.getTotalCount());
+        System.out.println(pageModel.getCurrentPage());
+        for(Employee employee:pageModel.getList()){
+            System.out.println(employee);
+        }
     }
-
 }
