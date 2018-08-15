@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 注意下面不要忘记导入mvc、context的schema -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+http://www.springframework.org/schema/mvc   
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd   
+http://www.springframework.org/schema/context   
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <description>本配置文件是供名为mvc-dispatcher的DispatcherServlet使用,提供其相关的Spring MVC配置</description>
+
+    <!-- 启用Spring基于annotation的DI, 使用户可以在Spring MVC中使用Spring的强大功能。
+    激活 @Required  @Autowired , JSR 250's  @PostConstruct,  @PreDestroy and  @Resource 等注解 -->
+    <context:annotation-config/>
+
+    <!-- DispatcherServlet上下文， 只管理@Controller类型的bean， 忽略其他型的bean, 如@Service -->
+    <context:component-scan base-package="cn.gezhi.crm">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!-- HandlerMapping, 无需配置， Spring MVC可以默认启动。 DefaultAnnotationHandlerMapping
+        annotation-driven HandlerMapping -->
+
+    <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数，启用基于annotation的HandlerMapping -->
+    <mvc:annotation-driven/>
+
+    <!-- 在地址栏访问 "网站根路径 + /404",所跳转到的页面404 -->
+    <mvc:view-controller path="/404" view-name="404"/>
+    <mvc:view-controller path="/500" view-name="500"/>
+
+
+    <!--静态资源处理,配置不用DispatcherServlet拦截的路径(例如：图片、CSS样式、js文件...)-->
+    <!--其中的"**"代表路径及其子路径-->
+    <mvc:resources location="/static/" mapping="/**"/>
+
+
+    <!-- 配置ViewResolver(视图解析器)。 可以用多个ViewResolver。 使用order属性排序。 InternalResourceViewResolver放在最后。 -->
+    <!-- ContentNegotiatingViewResolver允许你将同样的数据以不同形式的view展现出来 -->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="prefix" value="/"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="1" />
+    </bean>
+    <!-- 配置freeMarker模板加載地址 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <!-- 視圖解析器會在/WEB-INF/ftl/路徑下掃描視圖文件 -->
+        <property name="templateLoaderPath" value="/WEB-INF/template/"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+</beans>
