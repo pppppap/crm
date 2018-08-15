@@ -49,6 +49,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMapper.updateByPrimaryKey(employee);
     }
 
+    public int delete(int id) {
+        return employeeMapper.deleteByPrimaryKey(id);
+    }
+
     public int save(Employee employee) {
         return employeeMapper.insert(employee);
     }

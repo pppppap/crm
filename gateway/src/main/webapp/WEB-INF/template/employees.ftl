@@ -49,7 +49,7 @@
                 <div class="toolbar2">
                     <li class="click"><span><img src="images/t02.png"></span>修改</li>
                 </div>
-                <div class="toolbar2">
+                <div class="toolbar2" onclick="delete_employee(${i.id})">
                     <li><span><img src="images/t03.png"></span>删除</li>
                 </div>
             </td>
@@ -66,3 +66,23 @@
 </div>
 </body>
 </html>
+<script language="JavaScript" src="js/jquery.js"></script>
+<script>
+    function delete_employee(id) {
+        $.ajax({
+            dataType: "json",
+            url: "/delete_employee",
+            data: {
+                id: id
+            },
+            type:"DELETE",
+            success: function (result) {
+                if (result.code === 200) {
+                    alert(msg)
+                } else {
+                    alert(msg)
+                }
+            }
+        })
+    }
+</script>
