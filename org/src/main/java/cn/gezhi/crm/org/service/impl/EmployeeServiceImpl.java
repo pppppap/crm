@@ -8,7 +8,6 @@ import cn.gezhi.crm.org.service.EmployeeService;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -23,7 +22,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeMapper employeeMapper;
 
     public PageModel<Employee> getEmployeePage(int page, int pageSize) {
-        return getByExamplePage(page, pageSize, null);
+        PageHelper.startPage(page, pageSize);
+        EmployeeExample employeeExample = new EmployeeExample();
+        employeeExample.setOrderByClause("id");
+
+        List<Employee> employees = employeeMapper.selectByExample(employeeExample);
+        PageModel<Employee> pageModel = new PageModel<Employee>(employees);
+        return pageModel;
     }
 
     public Employee getById(int id) {
@@ -47,5 +52,4 @@ public class EmployeeServiceImpl implements EmployeeService {
     public int save(Employee employee) {
         return employeeMapper.insert(employee);
     }
-
 }
