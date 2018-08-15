@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import cn.gezhi.crm.org.dao.DepartmentMapper;
 import cn.gezhi.crm.org.entity.Department;
 import cn.gezhi.crm.org.entity.DepartmentExample;
+=======
+import cn.gezhi.crm.org.entity.Employee;
+import cn.gezhi.crm.org.entity.EmployeeExample;
+import cn.gezhi.crm.org.entity.PageModel;
+import cn.gezhi.crm.org.service.EmployeeService;
+>>>>>>> upstream/master
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +26,11 @@ import java.util.List;
 @ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
 public class OrgTest {
     @Autowired
+<<<<<<< HEAD
     private DepartmentMapper departmentMapper;
+=======
+    private EmployeeService employeeService;
+>>>>>>> upstream/master
 
    /**
     *TODO
@@ -27,9 +38,20 @@ public class OrgTest {
     *@return
     **/
     @Test
+<<<<<<< HEAD
     public void testSelectByPrimaryKey() {
         Department department = departmentMapper.selectByPrimaryKey(1);
         System.out.println(department);
+=======
+    public void test1() {
+        PageModel<Employee> pageModel = employeeService.getEmployeePage(1, 3);
+        System.out.println(pageModel);
+        System.out.println(pageModel.getTotalCount());
+        System.out.println(pageModel.getCurrentPage());
+        for (Employee employee : pageModel.getList()) {
+            System.out.println(employee);
+        }
+>>>>>>> upstream/master
     }
     @Test
     public void testInsert() {
@@ -41,6 +63,7 @@ public class OrgTest {
         System.out.println(insert);
 
 
+<<<<<<< HEAD
     }
    @Test
     public void testDelete(){
@@ -63,4 +86,16 @@ public class OrgTest {
            System.out.println(department);
        }
    }
+=======
+    @Test
+    public void test2() {
+        Employee employee = new Employee();
+        employee.setCareerId(2);
+        employee.setDepId(2);
+        employee.setName("张四");
+        employee.setDeleteFlag(0);
+        int n = employeeService.save(employee);
+        System.out.println(n);
+    }
+>>>>>>> upstream/master
 }

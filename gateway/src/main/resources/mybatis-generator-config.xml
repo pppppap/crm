@@ -4,12 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
     <!-- 本地数据库驱动程序jar包的全路径 -->
-<<<<<<< HEAD
-
-    <classPathEntry location="D:\Maven\Maven_local_Repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
-=======
     <classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.1.40\mysql-connector-java-5.1.40.jar"/>
->>>>>>> upstream/master
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
@@ -50,7 +45,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
-        <table schema="" tableName="department"></table>
+        <table schema="" tableName="employee"></table>
         <!-- 有些表的字段需要指定java类型
        <table schema="" tableName="">
          <columnOverride column="" javaType="" />
