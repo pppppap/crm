@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>新增员工信息</title>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="css/career.css" rel="stylesheet" type="text/css"/>
+    <link href="css/employee.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
