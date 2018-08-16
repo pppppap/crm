@@ -1,11 +1,10 @@
 package cn.gezhi.crm.org.service.impl;
 
 import cn.gezhi.crm.org.dao.DepartmentMapper;
-import cn.gezhi.crm.org.entity.Department;
-import cn.gezhi.crm.org.entity.DepartmentExample;
-import cn.gezhi.crm.org.entity.PageModel;
+import cn.gezhi.crm.org.entity.*;
 import cn.gezhi.crm.org.service.DepartmentService;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -116,5 +115,21 @@ public class DepartmentServiceImpl implements DepartmentService {
         List<Department> departments = departmentMapper.selectByExample(example);
 
         return new PageModel<Department>(departments);
+    }
+    public PageModel<Department> getByKeyPage(int page, int pageSize, String type, String key) {
+       DepartmentExample departmentExample =new DepartmentExample();
+        if (StringUtils.isNotBlank(key)) {
+            DepartmentExample.Criteria criteria = departmentExample.createCriteria();
+            if (type.equals("1")) {
+                criteria.andDepNameLike(key);
+            } else if (type.equals("2")) {
+                try {
+                    criteria.andIdEqualTo(Integer.parseInt(key));
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            }
+        }
+        return getByExamplePage(page, pageSize,departmentExample);
     }
 }

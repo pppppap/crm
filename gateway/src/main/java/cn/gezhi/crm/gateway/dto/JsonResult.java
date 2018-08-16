@@ -32,4 +32,12 @@ public class JsonResult {
         this.data = data;
     }
 
+    public JsonResult() {
+    }
+
+    public JsonResult(int code, String msg, Object data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
 }
