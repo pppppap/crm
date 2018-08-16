@@ -20,22 +20,38 @@
 <div class="formbody">
 
     <div class="formtitle"><span>用户信息</span></div>
+    <div class="search_box" style="float: left;">
+        <div>
+            <select name="search_type">
+                <option value="1">用户名</option>
+                <option value="2">员工ID</option>
+            </select>
+        </div>
+        <div style="margin-left: 10px;margin-right: 5px;">
+            <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
+        </div>
+        <div class="common_button" onclick="">
+            <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
+        </div>
+    </div>
 
     <table class="tablelist">
         <tr>
-            <th width="100">用户名</th>
-            <th width="100">用户密码</th>
+            <th width="50">用户ID</th>
+            <th width="150">用户名</th>
+            <th width="150">用户密码</th>
             <th width="50">员工ID</th>
         </tr>
 
         <#list page.list as i>
 
         <tr>
+            <td>${i.id!}</td>
             <td>${i.username!}</td>
             <td>${i.password!}</td>
             <td>${i.employeeId!}</td>
             <td>
-                <div class="toolbar2" onclick="get_id(${i.id!})">
+                <div class="toolbar2" onclick="go('/updateUser?id=${i.id}&username=${i.username}')">
                     <li><span><img src="images/t02.png"></span>修改</li>
                 </div>
                 <div class="toolbar2" onclick="delete_user(${i.id!})">
@@ -56,7 +72,8 @@
             <#if page.currentPage==1>
             <li class="paginItem unavaliable"><a href="javascript:;"><span class="pagepre"></span></a></li>
             <#else>
-            <li class="paginItem"><a href="javascript:;" onclick="beforePage(${page.currentPage})"><span class="pagepre"></span></a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="beforePage(${page.currentPage})"><span
+                    class="pagepre"></span></a></li>
             </#if>
 
             <#if page.totalPage &gt; 7 >
@@ -73,7 +90,8 @@
                     <#if (i==page.currentPage)>
                     <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a></li>
                     <#else>
-                    <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a></li>
+                    <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a>
+                    </li>
                     </#if>
                 </#list>
             </#if>
@@ -81,7 +99,9 @@
             <#if page.currentPage==page.totalPage>
             <li class="paginItem unavaliable"><a href="javascript:;"><span class="pagenxt"></span></a></li>
             <#else >
-            <li class="paginItem"><a href="javascript:;" onclick="afterPage(${page.currentPage},${page.totalPage})"><span class="pagenxt"></span></a></li>
+            <li class="paginItem"><a href="javascript:;"
+                                     onclick="afterPage(${page.currentPage})"><span
+                    class="pagenxt"></span></a></li>
             </#if>
         </ul>
     </div>
@@ -92,18 +112,6 @@
 <script>
     function go(url) {
         window.open(url, "_self")
-    }
-
-    function get_id(id1) {
-        $.ajax({
-            type: "post",
-            dataType: "json",
-            url: "/get_id",
-            data: {
-                id: id1
-            }
-        })
-        window.open("/updateUser", "_self")
     }
 
     function delete_user(id2) {
@@ -126,20 +134,11 @@
     }
 
     function beforePage(now_page) {
-        if ( now_page - 1 > 0) {
-            go("/userPage?page="+(now_page - 1));//拉取数据的方法
-        }
-        else {
-            alert("已经是第一页！");
-        }
+        go("/userPage?page=" + (now_page - 1));//拉取数据的方法
+
     }
 
-    function afterPage(now_page,total_page) {
-        if (now_page >= total_page) {
-            alert("已经是最后一页！");
-        }
-        else {
-            go("/userPage?page="+(now_page + 1));//拉取数据的方法
-        }
+    function afterPage(now_page) {
+        go("/userPage?page=" + (now_page + 1));//拉取数据的方法
     }
 </script>
