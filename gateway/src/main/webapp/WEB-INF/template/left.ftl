@@ -68,7 +68,7 @@
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="/show_user" target="rightFrame">用户列表</a></li>
-            <li><cite></cite><a href="/add_user" target="rightFrame">新增用户</a></li>
+            <li><cite></cite><a href="/addUser" target="rightFrame">新增用户</a></li>
         </ul>
     </dd>
 </dl>

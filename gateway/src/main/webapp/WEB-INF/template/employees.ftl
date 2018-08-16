@@ -49,7 +49,7 @@
                 <div class="toolbar2">
                     <li class="click"><span><img src="images/t02.png"></span>修改</li>
                 </div>
-                <div class="toolbar2" onclick="delete_employee(${i.id})">
+                <div class="toolbar2" onclick="delete_employee(${i.id!})">
                     <li><span><img src="images/t03.png"></span>删除</li>
                 </div>
             </td>
@@ -75,12 +75,12 @@
             data: {
                 id: id
             },
-            type:"DELETE",
+            type:"post",
             success: function (result) {
                 if (result.code === 200) {
-                    alert(msg)
+                    alert("删除成功")
                 } else {
-                    alert(msg)
+                    alert("删除失败")
                 }
             }
         })
