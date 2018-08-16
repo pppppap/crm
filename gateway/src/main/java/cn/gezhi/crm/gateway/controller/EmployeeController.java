@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+
 /**
  * TODO
  *
@@ -54,7 +55,7 @@ public class EmployeeController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete_employee(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.parseInt(request.getParameter("id"));
         int n = employeeService.delete(id);
         JsonResult result = new JsonResult();
         if (n > 0) {
@@ -66,6 +67,8 @@ public class EmployeeController {
         }
         return result;
     }
+
+
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(HttpServletRequest request, Model model) {

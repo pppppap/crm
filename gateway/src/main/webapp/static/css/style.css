@@ -47,6 +47,9 @@ h2{font-weight:normal;}
 .loginbm a{font-weight:bold;color:#0b3a58;}
 .loginbm a:hover{color:#fff;}
 
+/*top.html*/
+
+/*top.ftl*/
 
 .header{height:88px;}
 .topleft{height:88px;background:url(../images/topleft.jpg) no-repeat;float:left; width:300px;}
@@ -72,6 +75,9 @@ h2{font-weight:normal;}
 .user b{display:inline-block;width:20px;height:18px; background:url(../images/msg.png);text-align:center; font-weight:normal; color:#fff;font-size:14px;margin-right:13px; margin-top:7px; line-height:18px;}
 .user i{display:inline-block;margin-right:5px;font-style:normal;line-height:30px; font-size:14px;color:#b8ceda;}
 
+/*left.html*/
+
+/*left.ftl*/
 
 .lefttop{background:url(../images/lefttop.gif) repeat-x;height:40px;color:#fff;font-size:14px;line-height:40px;}
 .lefttop span{margin-left:8px; margin-top:10px;margin-right:8px; background:url(../images/leftico.png) no-repeat; width:20px; height:21px;float:left;}
@@ -90,6 +96,9 @@ h2{font-weight:normal;}
 .menuson li.active a{color:#fff;}
 .title{cursor:pointer;}
 
+/*right.html*/
+
+/*right.ftl*/
 
 .place{height:40px; background:url(../images/righttop.gif) repeat-x;}
 .place span{line-height:40px; font-weight:bold;float:left; margin-left:12px;}
@@ -184,7 +193,6 @@ h2{font-weight:normal;}
 .forminfo li{margin-bottom:13px; clear:both;}
 .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
 .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
-
 .forminfo li cite{display:block; padding-top:10px;}
 .forminfo li .required{color: red;}
 .forminfo li cite{display:block; padding-top:10px;}
@@ -196,8 +204,10 @@ h2{font-weight:normal;}
 
 
 /*tip*/
-.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/pie.htc); display:none; z-index:111111;}
 
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/pie.htc); display:none; z-index:111111;}
 .tiptop{height:40px; line-height:40px; background:url(../images/tcbg.gif)  repeat-x; cursor:pointer;}
 .tiptop span{font-size:14px; font-weight:bold; color:#fff;float:left; text-indent:20px;}
 .tiptop a{display:block; background:url(../images/close.png) no-repeat; width:22px; height:22px;float:right;margin-right:7px; margin-top:10px; cursor:pointer;}
@@ -233,7 +243,8 @@ h2{font-weight:normal;}
 .comtitle h2{font-size:14px; display:block; float:left;color:#2a3e93; background:#fff; padding-left:5px; padding-right:8px;}
 .rline{border-bottom:solid 1px #e5ecf0; height:10px; margin-left:50px;}
 .disklist{padding-left:20px; padding-right:20px;}
-
+.disklist li{width:275px;_width:270px;float:left; margin-right:10px;px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
+.disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
 .disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
 .disklist li a{color:#000;}
 .disklist li:hover{background:#fcfcfc; border:solid 1px #e5ecf0;}

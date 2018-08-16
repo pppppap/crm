@@ -49,4 +49,20 @@ public class User {
                 ", employeeId=" + employeeId +
                 '}';
     }
+
+    public User() {
+    }
+
+    public User(String username, String password, Integer employeeId) {
+        this.username = username;
+        this.password = password;
+        this.employeeId = employeeId;
+    }
+
+    public User(Integer id, String username, String password, Integer employeeId) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.employeeId = employeeId;
+    }
 }
