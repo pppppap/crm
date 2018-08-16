@@ -5,9 +5,9 @@ import java.util.Date;
 public class Employee {
     private Integer id;
 
-    private Integer careerId;
+    private Career career;
 
-    private Integer depId;
+    private Department department;
 
     private String name;
 
@@ -39,20 +39,20 @@ public class Employee {
         this.id = id;
     }
 
-    public Integer getCareerId() {
-        return careerId;
+    public Career getCareer() {
+        return career;
     }
 
-    public void setCareerId(Integer careerId) {
-        this.careerId = careerId;
+    public void setCareer(Career career) {
+        this.career = career;
     }
 
-    public Integer getDepId() {
-        return depId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepId(Integer depId) {
-        this.depId = depId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getName() {
@@ -147,8 +147,8 @@ public class Employee {
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", careerId=" + careerId +
-                ", depId=" + depId +
+                ", career=" + career +
+                ", department=" + department +
                 ", name='" + name + '\'' +
                 ", deleteFlag=" + deleteFlag +
                 ", inDate=" + inDate +

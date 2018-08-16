@@ -58,8 +58,10 @@
             <span><img src="images/leftico02.png"/></span>员工管理
         </div>
         <ul class="menuson">
-            <li><cite></cite><a href="/show_employee" target="rightFrame">员工列表</a></li>
-            <li><cite></cite><a href="addemployee.ftl" target="rightFrame">增加员工</a></li>
+
+            <li><cite></cite><a href="/employee/show" target="rightFrame">员工列表</a></li>
+            <li><cite></cite><a href="addcareer.ftl" target="rightFrame">增加员工</a></li>
+
         </ul>
     </dd>
     <dd>
