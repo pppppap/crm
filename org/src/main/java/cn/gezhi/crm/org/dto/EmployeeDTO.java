@@ -1,13 +1,16 @@
-package cn.gezhi.crm.org.entity;
+package cn.gezhi.crm.org.dto;
+
+import cn.gezhi.crm.org.entity.Career;
+import cn.gezhi.crm.org.entity.Department;
 
 import java.util.Date;
 
-public class Employee {
+public class EmployeeDTO {
     private Integer id;
 
-    private Integer careerId;
+    private Career career;
 
-    private Integer depId;
+    private Department department;
 
     private String name;
 
@@ -39,20 +42,20 @@ public class Employee {
         this.id = id;
     }
 
-    public Integer getCareerId() {
-        return careerId;
+    public Career getCareer() {
+        return career;
     }
 
-    public void setCareerId(Integer careerId) {
-        this.careerId = careerId;
+    public void setCareer(Career career) {
+        this.career = career;
     }
 
-    public Integer getDepId() {
-        return depId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepId(Integer depId) {
-        this.depId = depId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getName() {
@@ -141,5 +144,25 @@ public class Employee {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeDTO{" +
+                "id=" + id +
+                ", career=" + career +
+                ", department=" + department +
+                ", name='" + name + '\'' +
+                ", deleteFlag=" + deleteFlag +
+                ", inDate=" + inDate +
+                ", outDate=" + outDate +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", idNo='" + idNo + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", sex='" + sex + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 }

@@ -1,11 +1,11 @@
 package cn.gezhi.crm.org.dao;
 
+import cn.gezhi.crm.org.dto.EmployeeDTO;
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.EmployeeExample;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeMapper {
     int countByExample(EmployeeExample example);
@@ -18,9 +18,9 @@ public interface EmployeeMapper {
 
     int insertSelective(Employee record);
 
-    List<Employee> selectByExample(EmployeeExample example);
+    List<EmployeeDTO> selectByExample(EmployeeExample example);
 
-    Employee selectByPrimaryKey(Integer id);
+    EmployeeDTO selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Employee record, @Param("example") EmployeeExample example);
 
@@ -29,6 +29,4 @@ public interface EmployeeMapper {
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
-
-    List<Employee> selectAll();
 }

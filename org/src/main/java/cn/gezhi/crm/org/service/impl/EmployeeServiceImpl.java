@@ -1,6 +1,7 @@
 package cn.gezhi.crm.org.service.impl;
 
 import cn.gezhi.crm.org.dao.EmployeeMapper;
+import cn.gezhi.crm.org.dto.EmployeeDTO;
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.EmployeeExample;
 import cn.gezhi.crm.org.entity.PageModel;
@@ -24,22 +25,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeMapper employeeMapper;
 
-    public PageModel<Employee> getEmployeePage(int page, int pageSize) {
+    public PageModel<EmployeeDTO> getEmployeePage(int page, int pageSize) {
         return getByExamplePage(page, pageSize, null);
     }
 
-    public Employee getById(int id) {
+    public EmployeeDTO getById(int id) {
         return employeeMapper.selectByPrimaryKey(id);
     }
 
-    public List<Employee> getByExample(EmployeeExample example) {
+    public List<EmployeeDTO> getByExample(EmployeeExample example) {
         return employeeMapper.selectByExample(example);
     }
 
-    public PageModel<Employee> getByExamplePage(int page, int pageSize, EmployeeExample example) {
+    public PageModel<EmployeeDTO> getByExamplePage(int page, int pageSize, EmployeeExample example) {
         PageHelper.startPage(page, pageSize);
-        List<Employee> employees = employeeMapper.selectByExample(example);
-        return new PageModel<Employee>(employees);
+        List<EmployeeDTO> employees = employeeMapper.selectByExample(example);
+        return new PageModel<EmployeeDTO>(employees);
     }
 
     public int update(Employee employee) {
@@ -56,7 +57,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param type 1:姓名,2:工号
      * @return 分页的结果
      */
-    public PageModel<Employee> getByKeyPage(int page, int pageSize, String type, String key) {
+    public PageModel<EmployeeDTO> getByKeyPage(int page, int pageSize, String type, String key) {
         EmployeeExample employeeExample = new EmployeeExample();
         if (StringUtils.isNotBlank(key)) {
             EmployeeExample.Criteria criteria = employeeExample.createCriteria();
@@ -83,12 +84,12 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @param map 里面有筛选的条件
      * @return 分页的结果
      */
-    public PageModel<Employee> getByFilterPage(int page, int pageSize, Map<String, String> map) {
+    public PageModel<EmployeeDTO> getByFilterPage(int page, int pageSize, Map<String, String> map) {
         if (map.size() < 1) return getEmployeePage(page, pageSize);
         EmployeeExample example = new EmployeeExample();
         EmployeeExample.Criteria criteria = example.createCriteria();
         String sex = map.get("sex");
-        String department = map.get("department");
+        String department = map.get("dep_id");
         String age1 = map.get("age1");
         String age2 = map.get("age2");
         if (sex != null) criteria.andSexEqualTo(sex);
