@@ -21,56 +21,90 @@
 
     <div class="formtitle"><span>员工列表</span></div>
     <div class="search_box" style="float: left;">
-
-        <div>
-            <select name="search_type">
-                <option value="1">姓名</option>
-                <option value="2">工号</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;margin-right: 5px;">
-            <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
-        </div>
-        <div class="common_button">
-            <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
-        </div>
+        <form id="search_form" action="/employee/search" method="get">
+            <div>
+                <select name="search_type">
+                    <option value="1">姓名</option>
+                    <option value="2">工号</option>
+                </select>
+            </div>
+            <div style="margin-left: 10px;margin-right: 5px;">
+                <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
+            </div>
+            <div class="common_button" onclick="$('#search_form').submit()">
+                <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
+            </div>
+        </form>
     </div>
     <div class="search_box" style="float: right;">
-        <div>
-            <select>
-                <option value="0">性别</option>
-                <option value="男">男</option>
-                <option value="女">女</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;">
-            <select style="">
-                <option value="0">所有部门</option>
-                <option value="2">人事部</option>
-                <option value="3">销售部</option>
-                <option value="4">财务部</option>
-                <option value="4">技术部</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;">
-            <select>
-                <option value="0">年龄</option>
-                <option value="1">20</option>
-                <option value="2">21</option>
-                <option value="3">22</option>
-                <option value="4">23</option>
-            </select>-
-            <select>
-                <option value="0">年龄</option>
-                <option value="1">20</option>
-                <option value="2">21</option>
-                <option value="3">22</option>
-                <option value="4">23</option>
-            </select>
-        </div>
-        <div class="common_button">
-            <li class="click"><span><img src="/images/ico06.png"></span>筛选</li>
-        </div>
+        <form id="filter_form" action="/employee/filter" method="get">
+            <div>
+                <select name="sex">
+                    <option value="0">性别</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>
+            </div>
+            <div style="margin-left: 10px;">
+                <select name="dep_id">
+                    <option value="0">所有部门</option>
+                    <#list Session.departments as i>
+                         <option value="${i.id}">${i.depName}</option>
+                    </#list>
+                </select>
+            </div>
+            <div style="margin-left: 10px;">
+                <select name="age1">
+                    <option value="0">年龄</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                </select>-
+                <select name="age2">
+                    <option value="0">年龄</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                </select>
+            </div>
+            <div class="common_button" onclick="$('#filter_form').submit()">
+                <li class="click"><span><img src="/images/ico06.png"></span>筛选</li>
+            </div>
+        </form>
     </div>
     <table class="tablelist">
         <thead>
@@ -100,15 +134,9 @@
             <td>${i.tel!}</td>
             <td>${i.email!}</td>
             <td>${i.address!}</td>
-            <td>
-                <div class="toolbar2">
-                    <li class="click"><span><img src="images/t02.png"></span>修改</li>
-                </div>
-                <div class="toolbar2" onclick="delete_employee(${i.id!})">
-                    <li><span><img src="images/t03.png"></span>删除</li>
-                </div>
+            <td><a href="/employee/update?id=${i.id}" class="tablelink">修改</a><a class="tablelink" href="javascript:;"
+                                                                                 onclick="delete_employee(${i.id})">删除</a>
             </td>
-            <td><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
 
         </tr>
         </#list>
@@ -129,20 +157,22 @@
             </#if>
 
             <#if page.totalPage &gt; 7 >
-            <li class="paginItem"><a href="javascript:;" onclick="go('/search?page=1')">1</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/employee/search?page=1')">1</a></li>
             <li class="paginItem current"><a href="javascript:;" onclick="go('/search?page=2')">2</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/search?page=3')">3</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/search?page=4')">4</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/search?page=5')">5</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/employee/search?page=3')">3</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/employee/search?page=4')">4</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/employee/search?page=5')">5</a></li>
             <li class="paginItem more"><a href="javascript:;">...</a></li>
             <li class="paginItem"><a href="javascript:;"
                                      onclick="go('/search?page=${page.totalPage}')">${page.totalPage}</a></li>
             <#else>
                 <#list 1..page.totalPage as i>
                     <#if (i==page.currentPage)>
-                    <li class="paginItem"><a href="javascript:;" onclick="go('/search?page=${i}')">${i}</a></li>
+                    <li class="paginItem"><a href="javascript:;" onclick="go('/employee/search?page=${i}')">${i}</a>
+                    </li>
                     <#else>
-                    <li class="paginItem current"><a href="javascript:;" onclick="go('/search?page=${i}')">${i}</a></li>
+                    <li class="paginItem current"><a href="javascript:;"
+                                                     onclick="go('/employee/search?page=${i}')">${i}</a></li>
                     </#if>
                 </#list>
             </#if>
@@ -164,27 +194,20 @@
         window.open(url, "_self")
     }
 
+
     function delete_employee(id) {
         $.ajax({
             dataType: "json",
-            url: "/delete_employee",
+            url: "/employee/delete",
             data: {
                 id: id
             },
-
-            type:"post",
+            type: "post",
             success: function (result) {
                 if (result.code === 200) {
-                    alert("删除成功")
+                    window.location.reload(true)
                 } else {
                     alert("删除失败")
-
-            type: "POST",
-            success: function (result) {
-                if (result.code === 200) {
-                    alert(result.msg)
-                } else {
-                    alert(result.msg)
                 }
             }
         })

@@ -26,6 +26,7 @@
             <th width="100">用户名</th>
             <th width="100">用户密码</th>
             <th width="50">员工ID</th>
+            <th>操作</th>
         </tr>
 
         <#list page.list as i>

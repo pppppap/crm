@@ -42,29 +42,19 @@
 
 <div class="topright">
     <ul>
-<<<<<<< HEAD
-        <li><span><img src="images/help.png" title="帮助" class="helpimg"/></span><a href="#">帮助</a></li>
-        <li><a href="#">关于</a></li>
-        <li><a href="../../index.jsp" target="_parent">退出</a></li>
-=======
     <li><span><img src="images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
     <li><a href="#">关于</a></li>
     <li><a href="../../index.html" target="_parent">退出</a></li>
->>>>>>> crm/master
     </ul>
 
     <div class="user">
-<<<<<<< HEAD
-        <span>${user.username}</span>
+
+        <span></span>
         <i>申请消息</i>
         <b>5</b>
-=======
-    <span></span>
-    <i>申请消息</i>
-    <b>5</b>
-    </div>    
+
     
->>>>>>> crm/master
+
     </div>
 </div>
 </body>

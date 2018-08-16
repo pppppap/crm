@@ -59,7 +59,7 @@
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="/employee/show" target="rightFrame">员工列表</a></li>
-            <li><cite></cite><a href="addemployee.ftl" target="rightFrame">增加员工</a></li>
+            <li><cite></cite><a href="/employee/add" target="rightFrame">增加员工</a></li>
         </ul>
     </dd>
     <dd>

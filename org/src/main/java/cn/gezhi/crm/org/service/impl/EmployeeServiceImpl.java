@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public int update(Employee employee) {
-        return employeeMapper.updateByPrimaryKey(employee);
+        return employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
     public int delete(int id) {
@@ -67,7 +67,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 try {
                     criteria.andIdEqualTo(Integer.parseInt(key));
                 } catch (NumberFormatException e) {
-                    return null;
+                    employeeExample = null;
                 }
             }
         }

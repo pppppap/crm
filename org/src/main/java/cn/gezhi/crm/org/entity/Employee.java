@@ -11,7 +11,7 @@ public class Employee {
 
     private String name;
 
-    private Integer deleteFlag;
+    private Integer deleteFlag = 0;
 
     private Date inDate;
 

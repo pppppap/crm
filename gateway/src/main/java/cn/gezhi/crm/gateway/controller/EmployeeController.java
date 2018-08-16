@@ -4,7 +4,10 @@ import cn.gezhi.crm.gateway.dto.JsonResult;
 import cn.gezhi.crm.org.dto.EmployeeDTO;
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.PageModel;
+import cn.gezhi.crm.org.service.CareerService;
+import cn.gezhi.crm.org.service.DepartmentService;
 import cn.gezhi.crm.org.service.EmployeeService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,16 +32,28 @@ import java.util.Map;
 public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
+    @Autowired
+    private DepartmentService departmentService;
+    @Autowired
+    private CareerService careerService;
     private static final int PAGESIZE = 5;
 
+    @RequestMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("departments", departmentService.getAll(null));
+        model.addAttribute("careers", careerService.getByExample(null));
+        return "addemployee";
+    }
+
     @RequestMapping("/show")
-    public String showCareer(Model model) {
+    public String showCareer(HttpSession session, Model model) {
         PageModel<EmployeeDTO> pageModel = employeeService.getEmployeePage(1, PAGESIZE);
         model.addAttribute("page", pageModel);
+        session.setAttribute("departments", departmentService.getAll(null));
         return "employees";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/do_add")
     @ResponseBody
     public JsonResult add(Employee employee) {
         JsonResult result = new JsonResult();
@@ -69,15 +85,18 @@ public class EmployeeController {
     }
 
 
-
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String search(HttpServletRequest request, Model model) {
-        String searchType = request.getParameter("search_type").trim();
-        int page = Integer.parseInt(request.getParameter("page"));
-        String key = request.getParameter("key").trim();
+        String searchType = request.getParameter("search_type");
+        String p = request.getParameter("page");
+        int page = 1;
+        if (StringUtils.isNotBlank(p))
+            page = Integer.parseInt(p);
+        String key = request.getParameter("key");
 
         PageModel<EmployeeDTO> pageModel = employeeService.getByKeyPage(page, PAGESIZE, searchType, key);
         model.addAttribute("page", pageModel);
+
         return "employees";
     }
 
@@ -87,7 +106,10 @@ public class EmployeeController {
         String department = request.getParameter("dep_id");
         String age1 = request.getParameter("age1");
         String age2 = request.getParameter("age2");
-        int page = Integer.parseInt(request.getParameter("page"));
+        String p = request.getParameter("page");
+        int page = 1;
+        if (StringUtils.isNotBlank(p))
+            page = Integer.parseInt(p);
 
         Map<String, String> map = new HashMap<String, String>();
 
@@ -108,8 +130,34 @@ public class EmployeeController {
 
         PageModel<EmployeeDTO> pageModel = employeeService.getByFilterPage(page, PAGESIZE, map);
         model.addAttribute("page", pageModel);
-
-
         return "employees";
+    }
+
+    @RequestMapping("/update")
+    public String update(HttpServletRequest request, Model model) {
+        String ids = request.getParameter("id");
+        if (StringUtils.isNotBlank(ids)) {
+            int id = Integer.parseInt(ids);
+            EmployeeDTO employeeDTO = employeeService.getById(id);
+            model.addAttribute("employee", employeeDTO);
+        }
+        model.addAttribute("departments", departmentService.getAll(null));
+        model.addAttribute("careers", careerService.getByExample(null));
+        return "updateEmployee";
+    }
+
+    @RequestMapping(value = "/do_update", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult do_update(Employee employee) {
+        JsonResult result = new JsonResult();
+        int n = employeeService.update(employee);
+        if (n > 0) {
+            result.setCode(200);
+            result.setMsg("修改成功");
+        } else {
+            result.setCode(404);
+            result.setMsg("修改失败");
+        }
+        return result;
     }
 }
