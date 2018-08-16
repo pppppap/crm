@@ -192,6 +192,66 @@ public class EmployeeExample {
             return (Criteria) this;
         }
 
+        public Criteria andCareerIdIsNull() {
+            addCriterion("career_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdIsNotNull() {
+            addCriterion("career_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdEqualTo(Integer value) {
+            addCriterion("career_id =", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdNotEqualTo(Integer value) {
+            addCriterion("career_id <>", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdGreaterThan(Integer value) {
+            addCriterion("career_id >", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("career_id >=", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdLessThan(Integer value) {
+            addCriterion("career_id <", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdLessThanOrEqualTo(Integer value) {
+            addCriterion("career_id <=", value, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdIn(List<Integer> values) {
+            addCriterion("career_id in", values, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdNotIn(List<Integer> values) {
+            addCriterion("career_id not in", values, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdBetween(Integer value1, Integer value2) {
+            addCriterion("career_id between", value1, value2, "careerId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCareerIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("career_id not between", value1, value2, "careerId");
+            return (Criteria) this;
+        }
+
         public Criteria andDepIdIsNull() {
             addCriterion("dep_id is null");
             return (Criteria) this;

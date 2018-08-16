@@ -1,6 +1,7 @@
 package cn.gezhi.crm.gateway.controller;
 
 import cn.gezhi.crm.gateway.dto.JsonResult;
+import cn.gezhi.crm.org.dto.EmployeeDTO;
 import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.PageModel;
 import cn.gezhi.crm.org.service.EmployeeService;
@@ -31,12 +32,27 @@ public class EmployeeController {
 
     @RequestMapping("/show")
     public String showCareer(Model model) {
-        PageModel<Employee> pageModel = employeeService.getEmployeePage(1, PAGESIZE);
+        PageModel<EmployeeDTO> pageModel = employeeService.getEmployeePage(1, PAGESIZE);
         model.addAttribute("page", pageModel);
         return "employees";
     }
 
-    @RequestMapping(value = "/delete_employee", method = RequestMethod.POST)
+    @RequestMapping("/add")
+    @ResponseBody
+    public JsonResult add(Employee employee) {
+        JsonResult result = new JsonResult();
+        int n = employeeService.save(employee);
+        if (n > 0) {
+            result.setCode(200);
+            result.setMsg("保存成功");
+        } else {
+            result.setCode(404);
+            result.setMsg("保存失败");
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete_employee(HttpServletRequest request) {
         Integer id = Integer.parseInt(request.getParameter("id"));
@@ -60,7 +76,7 @@ public class EmployeeController {
         int page = Integer.parseInt(request.getParameter("page"));
         String key = request.getParameter("key").trim();
 
-        PageModel<Employee> pageModel = employeeService.getByKeyPage(page, PAGESIZE, searchType, key);
+        PageModel<EmployeeDTO> pageModel = employeeService.getByKeyPage(page, PAGESIZE, searchType, key);
         model.addAttribute("page", pageModel);
         return "employees";
     }
@@ -68,7 +84,7 @@ public class EmployeeController {
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public String filter(HttpServletRequest request, Model model) {
         String sex = request.getParameter("sex");
-        String department = request.getParameter("department_id");
+        String department = request.getParameter("dep_id");
         String age1 = request.getParameter("age1");
         String age2 = request.getParameter("age2");
         int page = Integer.parseInt(request.getParameter("page"));
@@ -80,8 +96,8 @@ public class EmployeeController {
             model.addAttribute("sex", sex);
         }
         if (!department.equals("0")) {
-            map.put("department_id", department);
-            model.addAttribute("department_id", department);
+            map.put("dep_id", department);
+            model.addAttribute("dep_id", department);
         }
         if (!age1.equals("0") && !age2.equals("0")) {
             map.put("age1", age1);
@@ -90,7 +106,7 @@ public class EmployeeController {
             model.addAttribute("age2", age2);
         }
 
-        PageModel<Employee> pageModel = employeeService.getByFilterPage(page, PAGESIZE, map);
+        PageModel<EmployeeDTO> pageModel = employeeService.getByFilterPage(page, PAGESIZE, map);
         model.addAttribute("page", pageModel);
 
 
