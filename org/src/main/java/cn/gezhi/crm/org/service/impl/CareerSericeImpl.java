@@ -40,17 +40,19 @@ public class CareerSericeImpl implements CareerService {
         return careerMapper.selectByPrimaryKey(id);
     }
 
-    public Integer update(Career career) {
+    public int  update(Career career) {
         return careerMapper.updateByPrimaryKey(career);
     }
 
-    public Integer save(Career career) {
+    public int save(Career career) {
         return careerMapper.insert(career);
     }
 
-    public Integer deleteById(int id) {
+    public int deleteById(int id) {
         return careerMapper.deleteByPrimaryKey(id);
     }
+
+
 
 
 }

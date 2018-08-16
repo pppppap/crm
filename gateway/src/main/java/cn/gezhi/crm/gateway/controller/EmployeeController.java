@@ -34,19 +34,19 @@ public class EmployeeController {
         return "employees";
     }
 
-    @RequestMapping(value = "/delete_employee", method = RequestMethod.DELETE)
-    @ResponseBody
-    public JsonResult delete_employee(HttpServletRquest request) {
-        int id = Integer.parseInt(request.getParameters("id"));
-        int n = employeeService.delete(id);
-        JsonResult result = new JsonResult();
-        if (n > 0) {
-            result.setCode(200);
-            result.setMsg("删除成功");
-        } else {
-            result.setCode(404);
-            result.setMsg("删除失败");
-        }
-        return result;
-    }
+//    @RequestMapping(value = "/delete_employee", method = RequestMethod.DELETE)
+//    @ResponseBody
+//    public JsonResult delete_employee(HttpServletRquest request) {
+//        int id = Integer.parseInt(request.getParameters("id"));
+//        int n = employeeService.delete(id);
+//        JsonResult result = new JsonResult();
+//        if (n > 0) {
+//            result.setCode(200);
+//            result.setMsg("删除成功");
+//        } else {
+//            result.setCode(404);
+//            result.setMsg("删除失败");
+//        }
+//        return result;
+//    }
 }
