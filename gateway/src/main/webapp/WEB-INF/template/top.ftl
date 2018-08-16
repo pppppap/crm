@@ -36,11 +36,11 @@ $(function(){
     <ul>
     <li><span><img src="images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
     <li><a href="#">关于</a></li>
-    <li><a href="../../index.jsp" target="_parent">退出</a></li>
+    <li><a href="../../index.html" target="_parent">退出</a></li>
     </ul>
      
     <div class="user">
-    <span>${user.username}</span>
+    <span></span>
     <i>申请消息</i>
     <b>5</b>
     </div>    
