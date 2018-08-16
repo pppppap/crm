@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>修改用户信息</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -29,13 +29,13 @@
 </div>
 </body>
 </html>
-<script language="JavaScript" src="js/jquery.js"></script>
+<script language="JavaScript" src="/js/jquery.js"></script>
 <script>
     function update_user() {
         $.ajax({
             type: "post",
             dataType: "json",
-            url: "/update_user",
+            url: "/user/update_user",
             data: $('#updateUser').serialize(),
         success: function (result) {
             if (result.code === 200) {
@@ -43,7 +43,7 @@
             } else {
                 alert("修改失败")
             }
-            window.open("/show_user", "_self")
+            window.open("/user/show_user", "_self")
         }
     })
     }

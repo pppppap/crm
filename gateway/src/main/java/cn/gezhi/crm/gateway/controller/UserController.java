@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2018/8/15
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;

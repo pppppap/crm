@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
     <title>查看用户信息</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="css/employee.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/employee.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <span>位置:</span>
     <ul class="placeul">
         <li><a href="/index">首页</a></li>
-        <li><a href="/show_user">用户列表</a></li>
+        <li><a href="/user/show_user">用户列表</a></li>
     </ul>
 </div>
 
@@ -51,11 +51,11 @@
             <td>${i.password!}</td>
             <td>${i.employeeId!}</td>
             <td>
-                <div class="toolbar2" onclick="go('/updateUser?id=${i.id}&username=${i.username}')">
-                    <li><span><img src="images/t02.png"></span>修改</li>
+                <div class="toolbar2" onclick="go('/user/updateUser?id=${i.id}&username=${i.username}')">
+                    <li><span><img src="/images/t02.png"></span>修改</li>
                 </div>
                 <div class="toolbar2" onclick="delete_user(${i.id!})">
-                    <li><span><img src="images/t03.png"></span>删除</li>
+                    <li><span><img src="/images/t03.png"></span>删除</li>
                 </div>
             </td>
         </tr>
@@ -77,20 +77,20 @@
             </#if>
 
             <#if page.totalPage &gt; 7 >
-            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=1')">1</a></li>
-            <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=2')">2</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=3')">3</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=4')">4</a></li>
-            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=5')">5</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=1')">1</a></li>
+            <li class="paginItem current"><a href="javascript:;" onclick="go('/user/userPage?page=2')">2</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=3')">3</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=4')">4</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=5')">5</a></li>
             <li class="paginItem more"><a href="javascript:;">...</a></li>
             <li class="paginItem"><a href="javascript:;"
-                                     onclick="go('/userPage?page=${page.totalPage}')">${page.totalPage}</a></li>
+                                     onclick="go('/user/userPage?page=${page.totalPage}')">${page.totalPage}</a></li>
             <#else>
                 <#list 1..page.totalPage as i>
                     <#if (i==page.currentPage)>
-                    <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a></li>
+                    <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=${i}')">${i}</a></li>
                     <#else>
-                    <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a>
+                    <li class="paginItem current"><a href="javascript:;" onclick="go('/user/userPage?page=${i}')">${i}</a>
                     </li>
                     </#if>
                 </#list>
@@ -108,7 +108,7 @@
 </div>
 </body>
 </html>
-<script language="JavaScript" src="js/jquery.js"></script>
+<script language="JavaScript" src="/js/jquery.js"></script>
 <script>
     function go(url) {
         window.open(url, "_self")
@@ -118,7 +118,7 @@
         $.ajax({
             type: "post",
             dataType: "json",
-            url: "/delete_user",
+            url: "/user/delete_user",
             data: {
                 id: id2
             },
@@ -134,11 +134,10 @@
     }
 
     function beforePage(now_page) {
-        go("/userPage?page=" + (now_page - 1));//拉取数据的方法
-
+        go("/user/userPage?page=" + (now_page - 1));//拉取数据的方法
     }
 
     function afterPage(now_page) {
-        go("/userPage?page=" + (now_page + 1));//拉取数据的方法
+        go("/user/userPage?page=" + (now_page + 1));//拉取数据的方法
     }
 </script>
