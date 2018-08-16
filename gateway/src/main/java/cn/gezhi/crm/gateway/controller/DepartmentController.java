@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,19 +24,25 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2018/8/15
  */
 @Controller
+@RequestMapping("/department")
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
     private static final int PAGESIZE = 5;
 
-    @RequestMapping("/show_department")
-    public String showDepartment(Model model) {
-        PageModel<Department> pageModel = departmentService.getDepartmentPage(1, PAGESIZE);
+    @RequestMapping("/show")
+    public String showDepartment(HttpServletRequest request,Model model) {
+        String s = request.getParameter("page");
+        int page =1;
+        if (s!=null) {
+            page = Integer.parseInt(s);
+        }
+        PageModel<Department> pageModel = departmentService.getDepartmentPage(page, PAGESIZE);
         model.addAttribute("page", pageModel);
         return "department";
     }
 
-    @RequestMapping(value = "/delete_department", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult delete_department(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -49,18 +56,53 @@ public class DepartmentController {
         return result;
     }
 
-    @RequestMapping("/add_department")
-    public String add_department() {
+    @RequestMapping("/adddepartment")
+    public String adddepartment() {
         return "adddepartment";
     }
 
-    @RequestMapping("/update_department")
-    public String update_department(HttpServletRequest request, Model model) {
+    @RequestMapping("/updatedepartment")
+    public String updateDepartment(HttpServletRequest request, Model model) {
         int i = Integer.parseInt(request.getParameter("id"));
-        System.out.println(i);
         Department department = departmentService.getOne(i);
         model.addAttribute("department", department);
         return "updatedepartment";
 
+    }
+
+    @RequestMapping("/submitupdation")
+    public String submit_updation(Department department) {
+        Integer id = department.getId();
+        String depName = department.getDepName();
+        String depDesc = department.getDepDesc();
+        departmentService.updateSelective(department);
+        return "forward:/department/show";
+    }
+
+    @RequestMapping("/add")
+    public String add_department(Department department) {
+        Integer id = department.getId();
+        String depName = department.getDepName();
+        String depDesc = department.getDepDesc();
+        System.out.println(depName);
+        System.out.println(depDesc);
+        departmentService.saveSelective(department);
+        return "forward:/department/show";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(HttpServletRequest request, Model model) {
+        String searchType = request.getParameter("search_type");
+        String s = request.getParameter("page");
+        int page =1;
+        if (s!=null) {
+             page = Integer.parseInt(s);
+        }
+        String key = request.getParameter("key").trim();
+
+        PageModel<Department> pageModel = departmentService.getByKeyPage(page, PAGESIZE, searchType, key);
+        model.addAttribute("page", pageModel);
+
+        return "department";
     }
 }

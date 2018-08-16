@@ -24,4 +24,5 @@ public interface DepartmentService {
     PageModel<Department> getDepartmentPage(int page, int pageSize);
 
     PageModel<Department> getByExamplePage(int page, int pageSize, DepartmentExample example);
+    PageModel<Department> getByKeyPage(int page, int pageSize, String type, String key);
 }
