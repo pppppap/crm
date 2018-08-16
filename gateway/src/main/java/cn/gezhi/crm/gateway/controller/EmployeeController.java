@@ -56,6 +56,7 @@ public class EmployeeController {
         String searchType = request.getParameter("search_type").trim();
         int page = Integer.parseInt(request.getParameter("page"));
         String key = request.getParameter("key").trim();
+
         PageModel<Employee> pageModel = employeeService.getByKeyPage(page, PAGESIZE, searchType, key);
         model.addAttribute("page", pageModel);
         return "employees";
