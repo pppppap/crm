@@ -22,7 +22,7 @@
 
     <ul class="forminfo">
         <form id="update_career" action="##" method="post" >
-            <li><label>职位编号</label><input id="career_id" name="career_id" type="text" class="dfinput"/><i class="required">*</i></li>
+            <#--<li><label>职位编号</label><input id="career_id" name="career_id" type="text" class="dfinput"/><i class="required">*</i></li>-->
             <li><label>职位名称</label><input id="career_name"name="career_name" type="text" class="dfinput"/></li>
             <li><label>职位描述</label><input id="career_desc" name="career_desc" type="text" class="dfinput"/></li>
             <li><label>&nbsp;</label><input   onclick="updatecareer()" name="" type="button" class="btn" value="确认修改"/></li>
@@ -45,7 +45,7 @@
                 } else {
                     alert("修改失败！")
                 }
-                window.location.href="/show_career.ftl";
+                window.open("/show_career","_self");
             }
         })
     }

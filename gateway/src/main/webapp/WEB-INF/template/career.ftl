@@ -34,7 +34,7 @@
                 <td>${i.careerName!}</td>
                 <td>${i.careerDesc!}</td>
                 <td>
-                    <div class="toolbar2" onclick="window.open('/updateCareer','_self')">
+                    <div class="toolbar2" onclick="careerId(${i.id!})">
                         <li><span><img src="images/t02.png"></span>修改</li>
                     </div>
                     <div class="toolbar2" onclick="delete_career(${i.id!})">
@@ -64,5 +64,14 @@
                     window.location.reload();
                 }
             })
+        }
+        function careerId(id) {
+            $.ajax({
+                dataType:"json",
+                url:"/careerId",
+                data:{careerId:id},
+                type:"post",
+            })
+            window.open("/updateCareer","_self")
         }
     </script>

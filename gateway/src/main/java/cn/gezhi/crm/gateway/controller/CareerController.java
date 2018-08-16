@@ -7,7 +7,6 @@ import cn.gezhi.crm.org.service.CareerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,6 +25,7 @@ public class CareerController {
     @Autowired
     private CareerService careerService;
     private static final int PAGESIZE = 20;
+    private int careerId;
 
     @RequestMapping("show_career")
     public String showCareer(Model model) {
@@ -84,6 +84,13 @@ public class CareerController {
     public String updateCareer(){
         return "updateCareer";
     }
+
+    @RequestMapping("/careerId")
+    public  String careerId(HttpServletRequest request){
+        this.careerId = Integer.parseInt(request.getParameter("careerId"));
+        return "updateCareer";
+    }
+
     @RequestMapping(value = "/update_career",method =RequestMethod.POST )
     @ResponseBody
     public JsonResult update_career(HttpServletRequest request){
@@ -92,11 +99,9 @@ public class CareerController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        Integer id = Integer.parseInt(request.getParameter("career_id"));
         String career_name = request.getParameter("career_name");
         String career_desc = request.getParameter("career_desc");
-        int n = careerService.update(new Career(id,career_name,career_desc));
-        System.out.println(id);
+        int n = careerService.update(new Career(careerId,career_name,career_desc));
         JsonResult result = new JsonResult();
         if (n > 0) {
             result.setCode(200);
