@@ -1,0 +1,8 @@
+.department_table { border: solid 1px #d0dee5;width: 100%;}
+.department_table td{border: solid 1px #d0dee5;text-align: left;height: 35px;}
+.department_table th{border: solid 1px #d0dee5;text-align: left;height: 20px;}
+
+.toolbar2{float:left;}
+.toolbar2 li{background:url(../images/toolbg.gif) repeat-x; line-height:28px; height:28px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;margin-left:5px;border-radius: 3px; behavior:url(../js/PIE.htc); cursor:pointer;}
+.toolbar2 li span{float:left; margin-left:10px;margin-top:5px;}
+.toolbar2 li img{width: 18px;height: 18px;}

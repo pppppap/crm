@@ -40,7 +40,7 @@ $(function(){
     </ul>
      
     <div class="user">
-    <span>${user.username}</span>
+    <span></span>
     <i>申请消息</i>
     <b>5</b>
     </div>    

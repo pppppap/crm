@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -34,19 +35,12 @@ public class EmployeeController {
         return "employees";
     }
 
-    @RequestMapping(value = "/delete_employee", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete_employee", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult delete_employee(HttpServletRquest request) {
-        int id = Integer.parseInt(request.getParameters("id"));
+    public JsonResult delete_employee(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
         int n = employeeService.delete(id);
-        JsonResult result = new JsonResult();
-        if (n > 0) {
-            result.setCode(200);
-            result.setMsg("删除成功");
-        } else {
-            result.setCode(404);
-            result.setMsg("删除失败");
-        }
-        return result;
+
+     return  null;
     }
 }
