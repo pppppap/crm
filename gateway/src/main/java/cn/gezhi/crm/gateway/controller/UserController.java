@@ -1,6 +1,7 @@
 package cn.gezhi.crm.gateway.controller;
 
 import cn.gezhi.crm.gateway.dto.JsonResult;
+import cn.gezhi.crm.org.entity.Employee;
 import cn.gezhi.crm.org.entity.PageModel;
 import cn.gezhi.crm.org.entity.User;
 import cn.gezhi.crm.org.service.UserService;
@@ -29,6 +30,14 @@ public class UserController {
     @RequestMapping(value = "/show_user")
     public String show_user(Model model) {
         PageModel<User> pageModel = userService.getUserPage(1, PAGESIZE);
+        model.addAttribute("page", pageModel);
+        return "showUser";
+    }
+
+    @RequestMapping(value = "/userPage", method = RequestMethod.GET)
+    public String userPage(HttpServletRequest request, Model model) {
+        int page = Integer.parseInt(request.getParameter("page"));
+        PageModel<User> pageModel = userService.getUserPage(page, PAGESIZE);
         model.addAttribute("page", pageModel);
         return "showUser";
     }

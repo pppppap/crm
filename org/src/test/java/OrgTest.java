@@ -10,14 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date 2018/8/15
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-placeholder.xml","classpath:spring/application*.xml"})
+@ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
 public class OrgTest {
+
     @Test
     public void test1() {
-     
     }
-
-
 
 
 }

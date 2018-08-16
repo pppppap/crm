@@ -21,7 +21,7 @@
 
     <div class="formtitle"><span>用户信息</span></div>
 
-    <table class="career_table">
+    <table class="tablelist">
         <tr>
             <th width="100">用户名</th>
             <th width="100">用户密码</th>
@@ -50,18 +50,50 @@
 
     <div class="pagin">
         <div class="message">共<i class="blue">${page.totalCount}</i>条记录，当前显示第&nbsp;<i class="blue">${page.currentPage}
-            &nbsp;</i>页，共<i class="blue">${page.totalPage}</i>页
-            <ul class="paginList">
-                <li class="paginItem"><a href="javascript:;" onclick=""><span class="pagepre"></span></a></li>
-                <li class="paginItem"><a href="javascript:;" onclick=""><span class="pagenxt"></span></a></li>
-            </ul>
+            &nbsp;</i>页
         </div>
+        <ul class="paginList">
+            <#if page.currentPage==1>
+            <li class="paginItem unavaliable"><a href="javascript:;"><span class="pagepre"></span></a></li>
+            <#else>
+            <li class="paginItem"><a href="javascript:;" onclick="beforePage(${page.currentPage})"><span class="pagepre"></span></a></li>
+            </#if>
+
+            <#if page.totalPage &gt; 7 >
+            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=1')">1</a></li>
+            <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=2')">2</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=3')">3</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=4')">4</a></li>
+            <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=5')">5</a></li>
+            <li class="paginItem more"><a href="javascript:;">...</a></li>
+            <li class="paginItem"><a href="javascript:;"
+                                     onclick="go('/userPage?page=${page.totalPage}')">${page.totalPage}</a></li>
+            <#else>
+                <#list 1..page.totalPage as i>
+                    <#if (i==page.currentPage)>
+                    <li class="paginItem"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a></li>
+                    <#else>
+                    <li class="paginItem current"><a href="javascript:;" onclick="go('/userPage?page=${i}')">${i}</a></li>
+                    </#if>
+                </#list>
+            </#if>
+
+            <#if page.currentPage==page.totalPage>
+            <li class="paginItem unavaliable"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+            <#else >
+            <li class="paginItem"><a href="javascript:;" onclick="afterPage(${page.currentPage},${page.totalPage})"><span class="pagenxt"></span></a></li>
+            </#if>
+        </ul>
     </div>
 </div>
 </body>
 </html>
 <script language="JavaScript" src="js/jquery.js"></script>
 <script>
+    function go(url) {
+        window.open(url, "_self")
+    }
+
     function get_id(id1) {
         $.ajax({
             type: "post",
@@ -95,7 +127,7 @@
 
     function beforePage(now_page) {
         if ( now_page - 1 > 0) {
-            getUserPage(now_page - 1);//拉取数据的方法
+            go("/userPage?page="+(now_page - 1));//拉取数据的方法
         }
         else {
             alert("已经是第一页！");
@@ -107,18 +139,7 @@
             alert("已经是最后一页！");
         }
         else {
-            getUserPage(now_page + 1);//拉取数据的方法
+            go("/userPage?page="+(now_page + 1));//拉取数据的方法
         }
-    }
-
-    function getUserPage(page) {
-        $.ajax({
-            type: "get",
-            dataType: "json",
-            url: "/show_user",
-            data: {
-                page: page
-            }
-        })
     }
 </script>

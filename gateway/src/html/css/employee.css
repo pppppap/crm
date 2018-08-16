@@ -6,3 +6,19 @@
 .toolbar2 li{background:url(../images/toolbg.gif) repeat-x; line-height:28px; height:28px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;margin-left:5px;border-radius: 3px; behavior:url(../js/PIE.htc); cursor:pointer;}
 .toolbar2 li span{float:left; margin-left:10px;margin-top:5px;}
 .toolbar2 li img{width: 18px;height: 18px;}
+
+.input_border{ border-top:solid 1px #a7b5bc; border-left:solid 1px #a7b5bc; border-right:solid 1px #ced9df; border-bottom:solid 1px #ced9df;}
+
+.search_box{height:40px;margin-bottom: 15px;}
+.search_box input{line-height: 32px;}
+.search_box div{float: left;}
+.search_box select{height: 34px;border-top: solid 1px #a7b5bc;border-left: solid 1px #a7b5bc;border-right: solid 1px #ced9df;border-bottom: solid 1px #ced9df;}
+
+.common_button{float:left;}
+.common_button li{background:url(../images/toolbg.gif) repeat-x; line-height:33px; height:33px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;margin-left:5px;border-radius: 3px; behavior:url(../js/PIE.htc); cursor:pointer;}
+.common_button li span{float:left; margin-left:10px;margin-top:5px;}
+.common_button li img{width: 20px;height: 20px;}
+
+select{font-size:12px;background:#fff;color:#000;}
+
+.tablelink{width: 40px;display: inline-block;cursor:pointer;}
