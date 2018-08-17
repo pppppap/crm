@@ -4,11 +4,11 @@
 <configuration>
 
     <!-- 定义 别名 -->
-    <typeAliases>
+    <!--<typeAliases>-->
         <!-- 批量别名定义 指定包路径，自动扫描包下边的pojo，定义别名，别名默认为类名（首字母小写或大写） -->
-        <package name="cn.gezhi.crm.org.entity"/>
+        <!--<package name="cn.gezhi.crm.org.entity"/>-->
 
-    </typeAliases>
+    <!--</typeAliases>-->
 
     <!--分页插件-->
     <plugins>
