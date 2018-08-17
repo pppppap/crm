@@ -12,6 +12,6 @@
     <groupId>cn.gezhi.crm</groupId>
     <artifactId>admin</artifactId>
     <version>${crm.version}</version>
-    
+
 
 </project>
