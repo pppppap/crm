@@ -11,6 +11,7 @@
     <modules>
         <module>org</module>
         <module>gateway</module>
+        <module>admin</module>
     </modules>
 
     <properties>

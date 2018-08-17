@@ -35,22 +35,6 @@
             <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
         </div>
     </div>
-    <div class="search_box" style="float: right;">
-
-        <div style="margin-left: 10px;">
-            <select style="">
-                <option value="1">所有部门</option>
-                <option value="2">人事部</option>
-                <option value="3">销售部</option>
-                <option value="4">财务部</option>
-                <option value="4">技术部</option>
-            </select>
-        </div>
-
-        <div class="common_button">
-            <li class="click"><span><img src="/images/ico06.png"></span>筛选</li>
-        </div>
-    </div>
     <table class="tablelist">
         <thead>
         <tr>

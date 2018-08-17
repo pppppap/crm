@@ -37,24 +37,6 @@
 
     <dd>
         <div class="title">
-            <span><img src="/images/leftico01.png"/></span>就业喜报管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="addjob.html" target="rightFrame">新增就业</a><i></i></li>
-            <li><cite></cite><a href="#" target="rightFrame">喜报列表</a><i></i></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="/images/leftico02.png"/></span>格智新闻管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="#" target="rightFrame">新增新闻</a><i></i></li>
-            <li><cite></cite><a href="#" target="rightFrame">新闻列表</a><i></i></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
             <span><img src="/images/leftico02.png"/></span>员工管理
         </div>
         <ul class="menuson">
