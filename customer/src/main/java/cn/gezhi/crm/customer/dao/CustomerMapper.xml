@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gezhi.crm.customer.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.gezhi.crm.customer.entity.Customer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="idcard" property="idcard" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="loan" property="loan" jdbcType="DECIMAL" />
+    <result column="bank_id" property="bankId" jdbcType="INTEGER" />
+    <result column="realloan" property="realloan" jdbcType="DECIMAL" />
+    <result column="process" property="process" jdbcType="VARCHAR" />
+    <result column="common" property="common" jdbcType="DECIMAL" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />
+    <result column="attention_level" property="attentionLevel" jdbcType="CHAR" />
+    <result column="evalute_id" property="evaluteId" jdbcType="INTEGER" />
+    <result column="customer_level" property="customerLevel" jdbcType="CHAR" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="house_id" property="houseId" jdbcType="INTEGER" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="security_id" property="securityId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, idcard, tel, loan, bank_id, realloan, process, common, note, salesman_id, 
+    attention_level, evalute_id, customer_level, date, house_id, car_id, security_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gezhi.crm.customer.entity.CustomerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="cn.gezhi.crm.customer.entity.CustomerExample" >
+    delete from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="cn.gezhi.crm.customer.entity.Customer" >
+    insert into customer (id, name, idcard, 
+      tel, loan, bank_id, 
+      realloan, process, common, 
+      note, salesman_id, attention_level, 
+      evalute_id, customer_level, date, 
+      house_id, car_id, security_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{loan,jdbcType=DECIMAL}, #{bankId,jdbcType=INTEGER}, 
+      #{realloan,jdbcType=DECIMAL}, #{process,jdbcType=VARCHAR}, #{common,jdbcType=DECIMAL}, 
+      #{note,jdbcType=VARCHAR}, #{salesmanId,jdbcType=INTEGER}, #{attentionLevel,jdbcType=CHAR}, 
+      #{evaluteId,jdbcType=INTEGER}, #{customerLevel,jdbcType=CHAR}, #{date,jdbcType=DATE}, 
+      #{houseId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, #{securityId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.gezhi.crm.customer.entity.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="loan != null" >
+        loan,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="realloan != null" >
+        realloan,
+      </if>
+      <if test="process != null" >
+        process,
+      </if>
+      <if test="common != null" >
+        common,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id,
+      </if>
+      <if test="attentionLevel != null" >
+        attention_level,
+      </if>
+      <if test="evaluteId != null" >
+        evalute_id,
+      </if>
+      <if test="customerLevel != null" >
+        customer_level,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="houseId != null" >
+        house_id,
+      </if>
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="securityId != null" >
+        security_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null" >
+        #{loan,jdbcType=DECIMAL},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="realloan != null" >
+        #{realloan,jdbcType=DECIMAL},
+      </if>
+      <if test="process != null" >
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="common != null" >
+        #{common,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanId != null" >
+        #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="attentionLevel != null" >
+        #{attentionLevel,jdbcType=CHAR},
+      </if>
+      <if test="evaluteId != null" >
+        #{evaluteId,jdbcType=INTEGER},
+      </if>
+      <if test="customerLevel != null" >
+        #{customerLevel,jdbcType=CHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="houseId != null" >
+        #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="securityId != null" >
+        #{securityId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="cn.gezhi.crm.customer.entity.CustomerExample" resultType="java.lang.Integer" >
+    select count(*) from customer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update customer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null" >
+        idcard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tel != null" >
+        tel = #{record.tel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loan != null" >
+        loan = #{record.loan,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bankId != null" >
+        bank_id = #{record.bankId,jdbcType=INTEGER},
+      </if>
+      <if test="record.realloan != null" >
+        realloan = #{record.realloan,jdbcType=DECIMAL},
+      </if>
+      <if test="record.process != null" >
+        process = #{record.process,jdbcType=VARCHAR},
+      </if>
+      <if test="record.common != null" >
+        common = #{record.common,jdbcType=DECIMAL},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salesmanId != null" >
+        salesman_id = #{record.salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.attentionLevel != null" >
+        attention_level = #{record.attentionLevel,jdbcType=CHAR},
+      </if>
+      <if test="record.evaluteId != null" >
+        evalute_id = #{record.evaluteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.customerLevel != null" >
+        customer_level = #{record.customerLevel,jdbcType=CHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=DATE},
+      </if>
+      <if test="record.houseId != null" >
+        house_id = #{record.houseId,jdbcType=INTEGER},
+      </if>
+      <if test="record.carId != null" >
+        car_id = #{record.carId,jdbcType=INTEGER},
+      </if>
+      <if test="record.securityId != null" >
+        security_id = #{record.securityId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update customer
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      idcard = #{record.idcard,jdbcType=VARCHAR},
+      tel = #{record.tel,jdbcType=VARCHAR},
+      loan = #{record.loan,jdbcType=DECIMAL},
+      bank_id = #{record.bankId,jdbcType=INTEGER},
+      realloan = #{record.realloan,jdbcType=DECIMAL},
+      process = #{record.process,jdbcType=VARCHAR},
+      common = #{record.common,jdbcType=DECIMAL},
+      note = #{record.note,jdbcType=VARCHAR},
+      salesman_id = #{record.salesmanId,jdbcType=INTEGER},
+      attention_level = #{record.attentionLevel,jdbcType=CHAR},
+      evalute_id = #{record.evaluteId,jdbcType=INTEGER},
+      customer_level = #{record.customerLevel,jdbcType=CHAR},
+      date = #{record.date,jdbcType=DATE},
+      house_id = #{record.houseId,jdbcType=INTEGER},
+      car_id = #{record.carId,jdbcType=INTEGER},
+      security_id = #{record.securityId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.gezhi.crm.customer.entity.Customer" >
+    update customer
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null" >
+        idcard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="loan != null" >
+        loan = #{loan,jdbcType=DECIMAL},
+      </if>
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=INTEGER},
+      </if>
+      <if test="realloan != null" >
+        realloan = #{realloan,jdbcType=DECIMAL},
+      </if>
+      <if test="process != null" >
+        process = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="common != null" >
+        common = #{common,jdbcType=DECIMAL},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="salesmanId != null" >
+        salesman_id = #{salesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="attentionLevel != null" >
+        attention_level = #{attentionLevel,jdbcType=CHAR},
+      </if>
+      <if test="evaluteId != null" >
+        evalute_id = #{evaluteId,jdbcType=INTEGER},
+      </if>
+      <if test="customerLevel != null" >
+        customer_level = #{customerLevel,jdbcType=CHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="houseId != null" >
+        house_id = #{houseId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="securityId != null" >
+        security_id = #{securityId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.gezhi.crm.customer.entity.Customer" >
+    update customer
+    set name = #{name,jdbcType=VARCHAR},
+      idcard = #{idcard,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      loan = #{loan,jdbcType=DECIMAL},
+      bank_id = #{bankId,jdbcType=INTEGER},
+      realloan = #{realloan,jdbcType=DECIMAL},
+      process = #{process,jdbcType=VARCHAR},
+      common = #{common,jdbcType=DECIMAL},
+      note = #{note,jdbcType=VARCHAR},
+      salesman_id = #{salesmanId,jdbcType=INTEGER},
+      attention_level = #{attentionLevel,jdbcType=CHAR},
+      evalute_id = #{evaluteId,jdbcType=INTEGER},
+      customer_level = #{customerLevel,jdbcType=CHAR},
+      date = #{date,jdbcType=DATE},
+      house_id = #{houseId,jdbcType=INTEGER},
+      car_id = #{carId,jdbcType=INTEGER},
+      security_id = #{securityId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

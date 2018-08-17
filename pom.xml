@@ -12,6 +12,7 @@
         <module>org</module>
         <module>gateway</module>
         <module>admin</module>
+        <module>customer</module>
     </modules>
 
     <properties>
