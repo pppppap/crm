@@ -27,7 +27,7 @@
 
 <ul class="nav">
     <li><a href="#" target="rightFrame" class="selected"><img width="45px" height="45px"
-                                                                         src="/images/icon01.png" title="审批列表"/>
+                                                              src="/images/icon01.png" title="审批列表"/>
         <h2>审批列表</h2></a></li>
     <li><a href="imgtable.html" target="rightFrame"><img src="/images/icon05.png" width="45px" height="45px"
                                                          title="审批添加"/>
@@ -42,14 +42,12 @@
 
 <div class="topright">
     <ul>
-    <li><span><img src="images/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
-    <li><a href="#">关于</a></li>
-    <li><a href="../../index.html" target="_parent">退出</a></li>
+        <li><span><img src="images/help.png" title="帮助" class="helpimg"/></span><a href="#">帮助</a></li>
+        <li><a href="#">关于</a></li>
+        <li><a href="../../index.html" target="_parent">退出</a></li>
 
     </ul>
-
     <div class="user">
-
         <span></span>
         <i>申请消息</i>
         <b>5</b>

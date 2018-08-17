@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>新增用户信息</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -11,7 +11,7 @@
     <span>位置:</span>
     <ul class="placeul">
         <li><a href="/index">首页</a></li>
-        <li><a href="/addUser">新增用户</a></li>
+        <li><a href="/user/addUser">新增用户</a></li>
     </ul>
 </div>
 
@@ -28,13 +28,13 @@
 </div>
 </body>
 </html>
-<script language="JavaScript" src="js/jquery.js"></script>
+<script language="JavaScript" src="/js/jquery.js"></script>
 <script>
     function add_user() {
         $.ajax({
             type: "post",
             dataType: "json",
-            url: "/add_user",
+            url: "/user/add_user",
             data: $('#addUser').serialize(),
             success: function (result) {
                 if (result.code === 200) {
