@@ -3,6 +3,8 @@ package cn.gezhi.crm.org.service;
 import cn.gezhi.crm.org.entity.Career;
 import cn.gezhi.crm.org.entity.CareerExample;
 import cn.gezhi.crm.org.entity.PageModel;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -20,7 +22,10 @@ public interface CareerService {
 
 
     Career getById(int id);  //id查询
-    Integer update (Career career);  //更新
-    Integer save (Career career);   //新增插入
-    Integer deleteById(int id);  //删除
+    int  update (Career career);  //更新
+    int  save (Career career);   //新增插入
+    int  deleteById(int id);  //删除
+
+
+
 }

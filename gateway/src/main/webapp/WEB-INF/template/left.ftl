@@ -8,23 +8,23 @@
     <script language="JavaScript" src="/js/jquery.js"></script>
 
     <script type="text/javascript">
-      $(function () {
-        //导航切换
-        $(".menuson li").click(function () {
-          $(".menuson li.active").removeClass("active")
-          $(this).addClass("active");
-        });
+        $(function () {
+            //导航切换
+            $(".menuson li").click(function () {
+                $(".menuson li.active").removeClass("active")
+                $(this).addClass("active");
+            });
 
-        $('.title').click(function () {
-          var $ul = $(this).next('ul');
-          $('dd').find('ul').slideUp();
-          if ($ul.is(':visible')) {
-            $(this).next('ul').slideUp();
-          } else {
-            $(this).next('ul').slideDown();
-          }
-        });
-      })
+            $('.title').click(function () {
+                var $ul = $(this).next('ul');
+                $('dd').find('ul').slideUp();
+                if ($ul.is(':visible')) {
+                    $(this).next('ul').slideUp();
+                } else {
+                    $(this).next('ul').slideDown();
+                }
+            });
+        })
     </script>
 
 
@@ -34,17 +34,13 @@
 <div class="lefttop"><span></span>功能菜单</div>
 
 <dl class="leftmenu">
-
     <dd>
         <div class="title">
             <span><img src="/images/leftico02.png"/></span>员工管理
         </div>
         <ul class="menuson">
-
             <li><cite></cite><a href="/employee/show" target="rightFrame">员工列表</a></li>
             <li><cite></cite><a href="/employee/add" target="rightFrame">增加员工</a></li>
-
-
         </ul>
     </dd>
     <dd>
@@ -64,6 +60,14 @@
             <li><cite></cite><a href="/department/show" target="rightFrame">部门列表</a></li>
             <li><cite></cite><a href="/department/adddepartment" target="rightFrame">新增部门</a></li>
         </ul>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="/images/leftico02.png"/></span>职位管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="/career/show_career" target="rightFrame">职位列表</a></li>
+            <li><cite></cite><a href="/career/addCareer" target="rightFrame">新增职位</a></li>
     </dd>
 </dl>
 </body>

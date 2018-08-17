@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <title>修改员工信息</title>
+    <title>新增员工信息</title>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -12,7 +12,7 @@
     <span>位置:</span>
     <ul class="placeul">
         <li><a href="index.html">首页</a></li>
-        <li><a href="addjob.html">修改员工信息</a></li>
+        <li><a href="addjob.html">新增员工</a></li>
     </ul>
 </div>
 
@@ -50,7 +50,7 @@
             </select>
             <i class="required">*</i>
         </li>
-        <li><label>年龄</label><input name="college" type="text" class="dfinput"/><i>输入整数</i></li>
+        <li><label>年龄</label><input name="college" type="text" class="dfinput" style="width: 100px;"/><i>输入整数</i></li>
         <li><label>电话</label><input name="college" type="text" class="dfinput"/></li>
         <li><label>邮箱</label><input name="college" type="text" class="dfinput"/></li>
         <li><label>住址</label><input name="college" type="text" class="dfinput"/></li>

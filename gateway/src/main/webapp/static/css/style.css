@@ -47,7 +47,7 @@ h2{font-weight:normal;}
 .loginbm a{font-weight:bold;color:#0b3a58;}
 .loginbm a:hover{color:#fff;}
 
-/*top.ftl*/
+
 
 /*top.html*/
 .header{height:88px;}
@@ -75,7 +75,9 @@ h2{font-weight:normal;}
 .user i{display:inline-block;margin-right:5px;font-style:normal;line-height:30px; font-size:14px;color:#b8ceda;}
 
 
-/*left.ftl*/
+
+/*left.html*/
+
 .lefttop{background:url(../images/lefttop.gif) repeat-x;height:40px;color:#fff;font-size:14px;line-height:40px;}
 .lefttop span{margin-left:8px; margin-top:10px;margin-right:8px; background:url(../images/leftico.png) no-repeat; width:20px; height:21px;float:left;}
 .leftmenu{width:187px;padding-bottom: 9999px;margin-bottom: -9999px; overflow:hidden; background:url(../images/leftline.gif) repeat-y right;}
@@ -92,6 +94,9 @@ h2{font-weight:normal;}
 .menuson li a{ display:block; *display:inline; *padding-top:5px;}
 .menuson li.active a{color:#fff;}
 .title{cursor:pointer;}
+
+
+
 
 
 /*right.ftl*/
@@ -188,6 +193,11 @@ h2{font-weight:normal;}
 .forminfo li{margin-bottom:13px; clear:both;}
 .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
 .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
+
+
+.forminfo li cite{display:block; padding-top:10px;}
+
+
 .forminfo li cite{display:block; padding-top:10px;}
 .forminfo li .required{color: red;}
 .forminfo li cite{display:block; padding-top:10px;}
@@ -197,8 +207,12 @@ h2{font-weight:normal;}
 .btn{width:137px;height:35px; background:url(../images/btnbg.png) no-repeat; font-size:14px;font-weight:bold;color:#fff; cursor:pointer;}
 
 
-/*tip*/
+
 .tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+
+
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+
 .tiptop{height:40px; line-height:40px; background:url(../images/tcbg.gif)  repeat-x; cursor:pointer;}
 .tiptop span{font-size:14px; font-weight:bold; color:#fff;float:left; text-indent:20px;}
 .tiptop a{display:block; background:url(../images/close.png) no-repeat; width:22px; height:22px;float:right;margin-right:7px; margin-top:10px; cursor:pointer;}
@@ -234,7 +248,11 @@ h2{font-weight:normal;}
 .comtitle h2{font-size:14px; display:block; float:left;color:#2a3e93; background:#fff; padding-left:5px; padding-right:8px;}
 .rline{border-bottom:solid 1px #e5ecf0; height:10px; margin-left:50px;}
 .disklist{padding-left:20px; padding-right:20px;}
+
+
+
 .disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
+
 .disklist li a{color:#000;}
 .disklist li:hover{background:#fcfcfc; border:solid 1px #e5ecf0;}
 .dleft{background:url(../images/c02.png) no-repeat; height:50px; margin-left:12px; float:left; width:50px; margin-top:15px;}
