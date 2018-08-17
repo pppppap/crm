@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +22,11 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2018/8/15
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
     private static final int PAGESIZE = 10;
-    private int userId;
 
     @RequestMapping(value = "/show_user")
     public String show_user(Model model) {
@@ -43,25 +44,20 @@ public class UserController {
     }
 
     @RequestMapping("/updateUser")
-    public String updateUser() {
+    public String updateUser(HttpServletRequest request, @RequestParam int id,@RequestParam String username) {
+        request.setAttribute("userId",id);
+        request.setAttribute("username",username);
         return "updateUser";
-    }
-
-    @RequestMapping(value = "/get_id", method = RequestMethod.POST)
-    @ResponseBody
-    public JsonResult get_id(HttpServletRequest request) {
-        this.userId = Integer.parseInt(request.getParameter("id"));
-        JsonResult result = new JsonResult();
-        return result;
     }
 
     @RequestMapping(value = "/update_user", method = RequestMethod.POST)
     @ResponseBody
     public JsonResult update_user(HttpServletRequest request) {
+        Integer id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         Integer empId = Integer.parseInt(request.getParameter("empId"));
-        int n = userService.update(new User(userId, username, password, empId));
+        int n = userService.update(new User(id, username, password, empId));
         JsonResult result = new JsonResult();
         if (n > 0) {
             result.setCode(200);
