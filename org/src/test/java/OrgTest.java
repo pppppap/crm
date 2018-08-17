@@ -1,3 +1,4 @@
+
 import cn.gezhi.crm.org.entity.Career;
 import cn.gezhi.crm.org.entity.CareerExample;
 import cn.gezhi.crm.org.entity.PageModel;
@@ -5,6 +6,9 @@ import cn.gezhi.crm.org.service.CareerService;
 import cn.gezhi.crm.org.service.impl.CareerSericeImpl;
 import cn.gezhi.crm.org.service.impl.DepartmentServiceImpl;
 import com.github.pagehelper.Page;
+
+import cn.gezhi.crm.org.service.EmployeeService;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +25,25 @@ import java.util.List;
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring-placeholder.xml","classpath:spring/application*.xml"})
+@ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
 public class OrgTest {
+
 
     @Test
     public void test(){
 
     }
+
+
+    @Autowired
+    EmployeeService service;
+
+    @Test
+    public void test1() {
+        System.out.println(service.getById(1));
+    }
+
+
 
 }
 

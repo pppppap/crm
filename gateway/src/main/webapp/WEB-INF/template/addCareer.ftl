@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>新增职位信息</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -11,8 +11,8 @@
 <div class="place">
     <span>位置:</span>
     <ul class="placeul">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="addjob.html">新增职位</a></li>
+        <li><a href="/index">首页</a></li>
+        <li><a href="/addjob.html">新增职位</a></li>
     </ul>
 </div>
 
@@ -45,13 +45,13 @@
 </div>
 </body>
 </html>
-<script language="JavaScript" src="js/jquery.js"></script>
+<script language="JavaScript" src="/js/jquery.js"></script>
 <script>
     function add_career() {
 
         $.ajax({
             dataType:"json",
-            url:"/add_career",
+            url:"/career/add_career",
             data:$('#addcareer').serialize(),
             type: "post",
             success: function (result) {
@@ -60,7 +60,7 @@
                     } else {
                         alert("添加失败！")
                     }
-                    window.location.href="/show_career.ftl";
+                    window.location.href="/career/show_career.ftl";
                 }
         })
     }

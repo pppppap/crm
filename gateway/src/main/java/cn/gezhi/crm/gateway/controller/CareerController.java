@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
@@ -21,10 +20,11 @@ import java.io.UnsupportedEncodingException;
  * @date 2018/8/15
  */
 @Controller
+@RequestMapping("/career")
 public class CareerController {
     @Autowired
     private CareerService careerService;
-    private static final int PAGESIZE = 20;
+    private static final int PAGESIZE = 3;
     private int careerId;
 
     @RequestMapping("show_career")
@@ -112,4 +112,14 @@ public class CareerController {
         }
         return result;
     }
+
+    //分页
+    @RequestMapping(value = "/career", method = RequestMethod.GET)
+    public String search(HttpServletRequest request, Model model) {
+        int  page = Integer.parseInt(request.getParameter("page"));
+        PageModel<Career> pageModel = careerService.getCareerPage(page,PAGESIZE);
+        model.addAttribute("page",pageModel);
+          return "career";
+    }
+
 }

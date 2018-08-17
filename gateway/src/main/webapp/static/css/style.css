@@ -49,6 +49,8 @@ h2{font-weight:normal;}
 
 
 
+
+
 /*top.html*/
 
 /*top.ftl*/
@@ -78,6 +80,9 @@ h2{font-weight:normal;}
 .user i{display:inline-block;margin-right:5px;font-style:normal;line-height:30px; font-size:14px;color:#b8ceda;}
 
 
+
+
+
 /*left.html*/
 
 /*left.ftl*/
@@ -98,6 +103,8 @@ h2{font-weight:normal;}
 .menuson li a{ display:block; *display:inline; *padding-top:5px;}
 .menuson li.active a{color:#fff;}
 .title{cursor:pointer;}
+
+
 
 
 
@@ -139,6 +146,7 @@ h2{font-weight:normal;}
 .pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
 .pagin .paginList .paginItem.more:hover{background:#FFF;}
 .pagin .paginList .paginItem.more a{color:#737373;}
+.pagin .paginList .unavaliable{color: #737373;}
 .pagepre{background:url(../images/pre.gif) no-repeat center center; width:31px; height:28px;}
 .pagenxt{background:url(../images/next.gif) no-repeat center center; width:31px; height:28px;}
 
@@ -198,8 +206,12 @@ h2{font-weight:normal;}
 .forminfo li label{width:86px;line-height:34px; display:block; float:left;}
 .forminfo li i{color:#7f7f7f; padding-left:20px; font-style:normal;}
 
+
 .forminfo li cite{display:block; padding-top:10px;}
 
+
+.forminfo li cite{display:block; padding-top:10px;}
+>>>>>>> crm/master
 .forminfo li .required{color: red;}
 .forminfo li cite{display:block; padding-top:10px;}
 .forminfo li select{height: 32px;border-top: solid 1px #a7b5bc;border-left: solid 1px #a7b5bc;border-right: solid 1px #ced9df;border-bottom: solid 1px #ced9df;}
@@ -211,9 +223,15 @@ h2{font-weight:normal;}
 
 /*tip*/
 
+
 .tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/pie.htc); display:none; z-index:111111;}
 
 .tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+
+
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/PIE.htc); display:none; z-index:111111;}
+.tip{width:485px; height:260px; position:absolute;top:10%; left:30%;background:#fcfdfd;box-shadow:1px 8px 10px 1px #9b9b9b;border-radius:1px;behavior:url(js/pie.htc); display:none; z-index:111111;}
 
 .tiptop{height:40px; line-height:40px; background:url(../images/tcbg.gif)  repeat-x; cursor:pointer;}
 .tiptop span{font-size:14px; font-weight:bold; color:#fff;float:left; text-indent:20px;}
@@ -251,8 +269,14 @@ h2{font-weight:normal;}
 .rline{border-bottom:solid 1px #e5ecf0; height:10px; margin-left:50px;}
 .disklist{padding-left:20px; padding-right:20px;}
 
+
 .disklist li{width:275px;_width:270px;float:left; margin-right:10px;px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
 
+.disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
+
+
+.disklist li{width:275px;_width:270px;float:left; margin-right:10px;px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
+.disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
 .disklist li{width:275px;_width:270px;float:left; margin-right:10px;height:70px; cursor:pointer; margin-bottom:5px;border:solid 1px #fff;}
 
 .disklist li a{color:#000;}
