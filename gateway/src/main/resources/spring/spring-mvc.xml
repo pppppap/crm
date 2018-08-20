@@ -29,10 +29,8 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数，启用基于annotation的HandlerMapping -->
     <mvc:annotation-driven/>
 
-    <!-- 在地址栏访问 "网站根路径 + /404",所跳转到的页面404 -->
-    <mvc:view-controller path="/404" view-name="404"/>
-    <mvc:view-controller path="/500" view-name="500"/>
-
+    <!-- 统一异常页面,在地址栏访问 "网站根路径 + /error",所跳转到的页面error -->
+    <mvc:view-controller path="/error" view-name="error"/>
 
     <!--静态资源处理,配置不用DispatcherServlet拦截的路径(例如：图片、CSS样式、js文件...)-->
     <!--其中的"**"代表路径及其子路径-->
@@ -45,7 +43,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
         <property name="contentType" value="text/html; charset=utf-8"/>
         <property name="prefix" value="/"/>
         <property name="suffix" value=".ftl"/>
-        <property name="order" value="1" />
+        <property name="order" value="1"/>
     </bean>
     <!-- 配置freeMarker模板加載地址 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">

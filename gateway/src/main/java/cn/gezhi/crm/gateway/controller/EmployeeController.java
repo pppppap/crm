@@ -36,20 +36,16 @@ public class EmployeeController {
     private DepartmentService departmentService;
     @Autowired
     private CareerService careerService;
-    private static final int PAGESIZE = 5;
-
-    @RequestMapping("/add")
-    public String add(Model model) {
-        model.addAttribute("departments", departmentService.getAll(null));
-        model.addAttribute("careers", careerService.getByExample(null));
-        return "addemployee";
-    }
+    private static final int PAGESIZE = 15;
 
     @RequestMapping("/show")
     public String showCareer(HttpSession session, Model model) {
         PageModel<EmployeeDTO> pageModel = employeeService.getEmployeePage(1, PAGESIZE);
+
         model.addAttribute("page", pageModel);
+
         session.setAttribute("departments", departmentService.getAll(null));
+        session.setAttribute("careers", careerService.getByExample(null));
         return "employees";
     }
 
@@ -103,32 +99,43 @@ public class EmployeeController {
     @RequestMapping(value = "/filter", method = RequestMethod.GET)
     public String filter(HttpServletRequest request, Model model) {
         String sex = request.getParameter("sex");
+        sex = sex == null ? "0" : sex;
         String department = request.getParameter("dep_id");
+        department = department == null ? "0" : department;
         String age1 = request.getParameter("age1");
         String age2 = request.getParameter("age2");
+        age1 = age1 == null ? "0" : age1;
+        age2 = age2 == null ? "0" : age2;
         String p = request.getParameter("page");
-        int page = 1;
-        if (StringUtils.isNotBlank(p))
-            page = Integer.parseInt(p);
+        int page = p == null ? 1 : Integer.parseInt(p);
+
+        String uri = "sex=" + sex + "&dep_id=" + department + "&age1=" + age1 + "&age2=" + age2;
 
         Map<String, String> map = new HashMap<String, String>();
 
         if (!sex.equals("0")) {
             map.put("sex", sex);
-            model.addAttribute("sex", sex);
         }
+        model.addAttribute("sex", sex);
+
         if (!department.equals("0")) {
             map.put("dep_id", department);
-            model.addAttribute("dep_id", department);
         }
+        model.addAttribute("dep_id", department);
+
         if (!age1.equals("0") && !age2.equals("0")) {
             map.put("age1", age1);
             map.put("age2", age2);
             model.addAttribute("age1", age1);
             model.addAttribute("age2", age2);
+        } else if (age1.equals("0") && age2.equals("0")) {
+            model.addAttribute("age1", age1);
+            model.addAttribute("age2", age2);
         }
 
         PageModel<EmployeeDTO> pageModel = employeeService.getByFilterPage(page, PAGESIZE, map);
+
+        pageModel.setUrl(uri);
         model.addAttribute("page", pageModel);
         return "employees";
     }
@@ -136,6 +143,7 @@ public class EmployeeController {
     @RequestMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         String ids = request.getParameter("id");
+        model.addAttribute("back_uri",  request.getHeader("Referer"));
         if (StringUtils.isNotBlank(ids)) {
             int id = Integer.parseInt(ids);
             EmployeeDTO employeeDTO = employeeService.getById(id);

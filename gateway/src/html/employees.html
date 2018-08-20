@@ -4,8 +4,8 @@
     <meta charset="utf-8"/>
     <title>新增员工信息</title>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <link href="css/employee.css" rel="stylesheet" type="text/css"/>
-    <link href="css/page.css" rel="stylesheet" type="text/css"/>
+    <link href="css/customer.css" rel="stylesheet" type="text/css"/>
+    <link href="css/panel.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 
 <div class="formbody ">
 
-    <div class="formtitle"><span>员工列表</span></div>
+
     <div class="search_box" style="float: left;">
 
         <div>
@@ -34,6 +34,11 @@
         </div>
         <div class="common_button">
             <li class="click"><span><img src="images/ico06.png"></span>搜索</li>
+        </div>
+        <div class="tools" style="display: inline-block;float: none;">
+            <ul class="toolbar">
+                <li class="click" onclick="$('.panel').show();"><span><img src="images/t01.png"/></span>添加</li>
+            </ul>
         </div>
     </div>
     <div class="search_box" style="float: right;">
@@ -230,25 +235,56 @@
 
 
 </div>
+<div class="panel" style="display: none;">
+    <div class="formbody">
+        <div class="formtitle"><span>客户信息</span></div>
+        <div>
+            <ul class="forminfo">
+                <li><label>客户姓名</label><input name="name" type="text" class="dfinput"/><i class="required">*</i></li>
+                <li>
+                <li><label>身份证</label><input name="name" type="text" class="dfinput"/></li>
+                </li>
+                <li>
+                <li><label>电话</label><input name="name" type="text" class="dfinput"/></li>
+                </li>
+                <li>
+                    <label>性别</label>
+                    <select>
+                        <option value="男">&nbsp;&nbsp;男&nbsp;</option>
+                        <option value="女">&nbsp;&nbsp;女&nbsp;</option>
+                    </select>
+                </li>
+                <li><label>年龄</label><input name="college" type="text" class="dfinput"
+                                            style="width: 100px;"/><i>输入整数</i>
+                </li>
+                <li><label>&nbsp;</label></li>
+                <li>
+                    <label>&nbsp;</label><input name="" type="button" class="btn" value="新增"/>
+                    <input name="" type="button" class="btn" value="关闭" onclick="$('.panel').hide();"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 <script language="JavaScript" src="js/jquery.js"></script>
 <script>
-    function delete_employee(id) {
-        $.ajax({
-            dataType: "json",
-            url: "/delete_employee",
-            data: {
-                id: id
-            },
-            type: "POST",
-            success: function (result) {
-                if (result.code === 200) {
-                    alert(result.msg)
-                } else {
-                    alert(result.msg)
-                }
-            }
-        })
-    }
+  function delete_employee(id) {
+    $.ajax({
+      dataType: "json",
+      url: "/delete_employee",
+      data: {
+        id: id
+      },
+      type: "POST",
+      success: function (result) {
+        if (result.code === 200) {
+          alert(result.msg)
+        } else {
+          alert(result.msg)
+        }
+      }
+    })
+  }
 </script>

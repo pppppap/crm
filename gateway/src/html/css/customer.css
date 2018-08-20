@@ -1,3 +1,4 @@
+.tablelink{width: 40px;display: inline-block;cursor:pointer;}
 
 .toolbar2{float:left;}
 .toolbar2 li{background:url(../images/toolbg.gif) repeat-x; line-height:28px; height:28px; border:solid 1px #d3dbde; float:left; padding-right:10px; margin-right:5px;margin-left:5px;border-radius: 3px; behavior:url(../js/PIE.htc); cursor:pointer;}
@@ -18,6 +19,6 @@
 
 select{font-size:12px;background:#fff;color:#000;}
 
-.tablelink{width: 40px;display: inline-block;cursor:pointer;}
-
-
+.formbody input{line-height: 32px;}
+.panel{z-index: 999;width:100%; height:100%;left:0;top:0; position:fixed;background:rgba(0,0,0,0.3);}
+.panel .formbody{position:absolute; top:50%;left:50%; width:450px; height:500px; margin-top:-225px; margin-left:-250px; background: #EDF6FA;}

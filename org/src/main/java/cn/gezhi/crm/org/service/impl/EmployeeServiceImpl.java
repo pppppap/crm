@@ -62,7 +62,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (StringUtils.isNotBlank(key)) {
             EmployeeExample.Criteria criteria = employeeExample.createCriteria();
             if (type.equals("1")) {
-                criteria.andNameLike(key);
+                criteria.andNameLike("%" + key + "%");
             } else if (type.equals("2")) {
                 try {
                     criteria.andIdEqualTo(Integer.parseInt(key));

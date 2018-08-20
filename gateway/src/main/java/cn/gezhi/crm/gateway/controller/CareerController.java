@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
@@ -28,8 +29,10 @@ public class CareerController {
     private int careerId;
 
     @RequestMapping("show_career")
-    public String showCareer(Model model) {
-        PageModel<Career> pageModel = careerService.getCareerPage(1, PAGESIZE);
+    public String showCareer(HttpServletRequest request, Model model) {
+        String p = request.getParameter("page");
+        int page = p == null ? 1 : Integer.parseInt(p);
+        PageModel<Career> pageModel = careerService.getCareerPage(page, PAGESIZE);
         model.addAttribute("page", pageModel);
         return "career";
     }
@@ -53,7 +56,7 @@ public class CareerController {
 
     //添加
     @RequestMapping("/addCareer")
-    public String saveCareer(){
+    public String saveCareer() {
         return "addCareer";
     }
 
@@ -68,7 +71,7 @@ public class CareerController {
         Integer id = Integer.parseInt(request.getParameter("career_id"));
         String career_name = request.getParameter("career_name");
         String career_desc = request.getParameter("career_desc");
-        int n = careerService.save(new Career(id,career_name,career_desc));
+        int n = careerService.save(new Career(id, career_name, career_desc));
         JsonResult result = new JsonResult();
         if (n > 0) {
             result.setCode(200);
@@ -79,21 +82,22 @@ public class CareerController {
         }
         return result;
     }
+
     //更改
     @RequestMapping("/updateCareer")
-    public String updateCareer(){
+    public String updateCareer() {
         return "updateCareer";
     }
 
     @RequestMapping("/careerId")
-    public  String careerId(HttpServletRequest request){
+    public String careerId(HttpServletRequest request) {
         this.careerId = Integer.parseInt(request.getParameter("careerId"));
         return "updateCareer";
     }
 
-    @RequestMapping(value = "/update_career",method =RequestMethod.POST )
+    @RequestMapping(value = "/update_career", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult update_career(HttpServletRequest request){
+    public JsonResult update_career(HttpServletRequest request) {
         try {
             request.setCharacterEncoding("utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -101,7 +105,7 @@ public class CareerController {
         }
         String career_name = request.getParameter("career_name");
         String career_desc = request.getParameter("career_desc");
-        int n = careerService.update(new Career(careerId,career_name,career_desc));
+        int n = careerService.update(new Career(careerId, career_name, career_desc));
         JsonResult result = new JsonResult();
         if (n > 0) {
             result.setCode(200);
@@ -113,13 +117,5 @@ public class CareerController {
         return result;
     }
 
-    //分页
-    @RequestMapping(value = "/career", method = RequestMethod.GET)
-    public String search(HttpServletRequest request, Model model) {
-        int  page = Integer.parseInt(request.getParameter("page"));
-        PageModel<Career> pageModel = careerService.getCareerPage(page,PAGESIZE);
-        model.addAttribute("page",pageModel);
-          return "career";
-    }
 
 }
