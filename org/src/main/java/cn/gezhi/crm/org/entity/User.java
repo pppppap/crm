@@ -59,10 +59,27 @@ public class User {
         this.employeeId = employeeId;
     }
 
+    public User(Integer id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
     public User(Integer id, String username, String password, Integer employeeId) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.employeeId = employeeId;
+    }
+
+    public User(Integer id, String username, Integer employeeId) {
+        this.id = id;
+        this.username = username;
         this.employeeId = employeeId;
     }
 }

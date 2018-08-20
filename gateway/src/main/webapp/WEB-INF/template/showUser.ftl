@@ -21,36 +21,39 @@
 
     <div class="formtitle"><span>用户信息</span></div>
     <div class="search_box" style="float: left;">
-        <div>
-            <select name="search_type">
-                <option value="1">用户名</option>
-                <option value="2">员工ID</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;margin-right: 5px;">
-            <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
-        </div>
-        <div class="common_button" onclick="">
-            <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
-        </div>
+        <form id="search_form" action="/user/search" method="post" accept-charset="UTF-8" onsubmit="document.charset='UTF-8';">
+            <div>
+                <select name="search_type">
+                    <option value="1">用户名</option>
+                    <option value="2">员工姓名</option>
+                </select>
+            </div>
+            <div style="margin-left: 10px;margin-right: 5px;">
+                <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
+            </div>
+            <div class="common_button" onclick="$('#search_form').submit()">
+                <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
+            </div>
+        </form>
     </div>
 
     <table class="tablelist">
+        <thead>
         <tr>
-            <th width="50">用户ID</th>
-            <th width="150">用户名</th>
-            <th width="150">用户密码</th>
-            <th width="50">员工ID</th>
-            <th>操作</th>
+            <th width="50">用户ID<i class="sort"><img src="/images/px.gif"/></i></th>
+            <th width="200">用户名</th>
+            <th width="200">用户密码</th>
+            <th width="50">员工姓名</th>
+            <th width="100">操作</th>
         </tr>
-
+        </thead>
+        <tbody>
         <#list page.list as i>
-
         <tr>
             <td>${i.id!}</td>
             <td>${i.username!}</td>
             <td>${i.password!}</td>
-            <td>${i.employeeId!}</td>
+            <td>${(i.employee.name)!}</td>
             <td>
                 <div class="toolbar2" onclick="go('/user/updateUser?id=${i.id}&username=${i.username}')">
                     <li><span><img src="/images/t02.png"></span>修改</li>
@@ -60,9 +63,8 @@
                 </div>
             </td>
         </tr>
-
         </#list>
-
+        </tbody>
     </table>
 
     <div class="pagin">
@@ -91,7 +93,8 @@
                     <#if (i==page.currentPage)>
                     <li class="paginItem"><a href="javascript:;" onclick="go('/user/userPage?page=${i}')">${i}</a></li>
                     <#else>
-                    <li class="paginItem current"><a href="javascript:;" onclick="go('/user/userPage?page=${i}')">${i}</a>
+                    <li class="paginItem current"><a href="javascript:;"
+                                                     onclick="go('/user/userPage?page=${i}')">${i}</a>
                     </li>
                     </#if>
                 </#list>
@@ -125,9 +128,9 @@
             },
             success: function (result) {
                 if (result.code === 200) {
-                    alert("删除成功")
+                    alert(result.msg)
                 } else {
-                    alert("删除失败")
+                    alert(result.msg)
                 }
                 window.location.reload();
             }

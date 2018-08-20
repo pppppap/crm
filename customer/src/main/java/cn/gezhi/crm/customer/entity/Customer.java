@@ -182,4 +182,27 @@ public class Customer {
     public void setSecurityId(String securityId) {
         this.securityId = securityId == null ? null : securityId.trim();
     }
+
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", tel='" + tel + '\'' +
+                ", loan=" + loan +
+                ", bankId=" + bankId +
+                ", realloan=" + realloan +
+                ", process='" + process + '\'' +
+                ", common=" + common +
+                ", note='" + note + '\'' +
+                ", salesmanId=" + salesmanId +
+                ", attentionLevel='" + attentionLevel + '\'' +
+                ", evaluteId=" + evaluteId +
+                ", customerLevel='" + customerLevel + '\'' +
+                ", date=" + date +
+                ", houseId=" + houseId +
+                ", carId=" + carId +
+                ", securityId='" + securityId + '\'' +
+                '}';
+    }
 }
