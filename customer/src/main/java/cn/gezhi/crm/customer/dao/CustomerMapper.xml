@@ -17,8 +17,6 @@
     <result column="evalute_id" property="evaluteId" jdbcType="INTEGER" />
     <result column="customer_level" property="customerLevel" jdbcType="CHAR" />
     <result column="date" property="date" jdbcType="DATE" />
-    <result column="house_id" property="houseId" jdbcType="INTEGER" />
-    <result column="car_id" property="carId" jdbcType="INTEGER" />
     <result column="security_id" property="securityId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -81,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, idcard, tel, loan, bank_id, realloan, process, common, note, salesman_id, 
-    attention_level, evalute_id, customer_level, date, house_id, car_id, security_id
+    attention_level, evalute_id, customer_level, date, security_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gezhi.crm.customer.entity.CustomerExample" >
     select
@@ -119,15 +117,13 @@
       realloan, process, common, 
       note, salesman_id, attention_level, 
       evalute_id, customer_level, date, 
-      house_id, car_id, security_id
-      )
+      security_id)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{loan,jdbcType=DECIMAL}, #{bankId,jdbcType=INTEGER}, 
       #{realloan,jdbcType=DECIMAL}, #{process,jdbcType=VARCHAR}, #{common,jdbcType=DECIMAL}, 
       #{note,jdbcType=VARCHAR}, #{salesmanId,jdbcType=INTEGER}, #{attentionLevel,jdbcType=CHAR}, 
       #{evaluteId,jdbcType=INTEGER}, #{customerLevel,jdbcType=CHAR}, #{date,jdbcType=DATE}, 
-      #{houseId,jdbcType=INTEGER}, #{carId,jdbcType=INTEGER}, #{securityId,jdbcType=VARCHAR}
-      )
+      #{securityId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.gezhi.crm.customer.entity.Customer" >
     insert into customer
@@ -176,12 +172,6 @@
       </if>
       <if test="date != null" >
         date,
-      </if>
-      <if test="houseId != null" >
-        house_id,
-      </if>
-      <if test="carId != null" >
-        car_id,
       </if>
       <if test="securityId != null" >
         security_id,
@@ -232,12 +222,6 @@
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
-      </if>
-      <if test="houseId != null" >
-        #{houseId,jdbcType=INTEGER},
-      </if>
-      <if test="carId != null" >
-        #{carId,jdbcType=INTEGER},
       </if>
       <if test="securityId != null" >
         #{securityId,jdbcType=VARCHAR},
@@ -298,12 +282,6 @@
       <if test="record.date != null" >
         date = #{record.date,jdbcType=DATE},
       </if>
-      <if test="record.houseId != null" >
-        house_id = #{record.houseId,jdbcType=INTEGER},
-      </if>
-      <if test="record.carId != null" >
-        car_id = #{record.carId,jdbcType=INTEGER},
-      </if>
       <if test="record.securityId != null" >
         security_id = #{record.securityId,jdbcType=VARCHAR},
       </if>
@@ -329,8 +307,6 @@
       evalute_id = #{record.evaluteId,jdbcType=INTEGER},
       customer_level = #{record.customerLevel,jdbcType=CHAR},
       date = #{record.date,jdbcType=DATE},
-      house_id = #{record.houseId,jdbcType=INTEGER},
-      car_id = #{record.carId,jdbcType=INTEGER},
       security_id = #{record.securityId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -381,12 +357,6 @@
       <if test="date != null" >
         date = #{date,jdbcType=DATE},
       </if>
-      <if test="houseId != null" >
-        house_id = #{houseId,jdbcType=INTEGER},
-      </if>
-      <if test="carId != null" >
-        car_id = #{carId,jdbcType=INTEGER},
-      </if>
       <if test="securityId != null" >
         security_id = #{securityId,jdbcType=VARCHAR},
       </if>
@@ -409,8 +379,6 @@
       evalute_id = #{evaluteId,jdbcType=INTEGER},
       customer_level = #{customerLevel,jdbcType=CHAR},
       date = #{date,jdbcType=DATE},
-      house_id = #{houseId,jdbcType=INTEGER},
-      car_id = #{carId,jdbcType=INTEGER},
       security_id = #{securityId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

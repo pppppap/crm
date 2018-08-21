@@ -33,10 +33,6 @@ public class Customer {
 
     private Date date;
 
-    private Integer houseId;
-
-    private Integer carId;
-
     private String securityId;
 
     public Integer getId() {
@@ -159,50 +155,11 @@ public class Customer {
         this.date = date;
     }
 
-    public Integer getHouseId() {
-        return houseId;
-    }
-
-    public void setHouseId(Integer houseId) {
-        this.houseId = houseId;
-    }
-
-    public Integer getCarId() {
-        return carId;
-    }
-
-    public void setCarId(Integer carId) {
-        this.carId = carId;
-    }
-
     public String getSecurityId() {
         return securityId;
     }
 
     public void setSecurityId(String securityId) {
         this.securityId = securityId == null ? null : securityId.trim();
-    }
-
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", idcard='" + idcard + '\'' +
-                ", tel='" + tel + '\'' +
-                ", loan=" + loan +
-                ", bankId=" + bankId +
-                ", realloan=" + realloan +
-                ", process='" + process + '\'' +
-                ", common=" + common +
-                ", note='" + note + '\'' +
-                ", salesmanId=" + salesmanId +
-                ", attentionLevel='" + attentionLevel + '\'' +
-                ", evaluteId=" + evaluteId +
-                ", customerLevel='" + customerLevel + '\'' +
-                ", date=" + date +
-                ", houseId=" + houseId +
-                ", carId=" + carId +
-                ", securityId='" + securityId + '\'' +
-                '}';
     }
 }

@@ -60,13 +60,17 @@
             <th width="80">用户ID</th>
             <th>用户名</th>
             <th>用户密码</th>
-            <th>员工ID</th>
+            <th>员工</th>
             <th width="100">操作</th>
         </tr>
         </thead>
         <tbody>
         <#list page.list as i>
-        <tr>
+            <#if i_index%2==1>
+                    <tr class="odd">
+            <#else>
+                    <tr>
+            </#if>
             <td>${i.id!?c}</td>
             <td>${i.username!}</td>
             <td>${i.password!}</td>

@@ -1,11 +1,13 @@
 package cn.gezhi.crm.customer.entity;
 
+import java.math.BigDecimal;
+
 public class Bank {
     private Integer id;
 
     private String name;
 
-    private Long rate;
+    private BigDecimal rate;
 
     public Integer getId() {
         return id;
@@ -23,11 +25,11 @@ public class Bank {
         this.name = name == null ? null : name.trim();
     }
 
-    public Long getRate() {
+    public BigDecimal getRate() {
         return rate;
     }
 
-    public void setRate(Long rate) {
+    public void setRate(BigDecimal rate) {
         this.rate = rate;
     }
 }
