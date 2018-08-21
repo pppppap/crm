@@ -23,7 +23,7 @@
     <form action="/employee/do_update" method="post" id="update_employee">
         <#escape x as x!"">
             <ul class="forminfo">
-                <li><label>员工编号</label><input name="id" type="text" class="dfinput" value="${employee.id!}"/></li>
+                <li><label>员工编号</label><input name="id" type="text" class="dfinput" value="${employee.id!?c}" readonly/></li>
                 <li><label>员工姓名</label><input name="name" type="text" class="dfinput" value="${employee.name!}"/><i
                         class="required">*</i></li>
                 <li>
@@ -31,9 +31,9 @@
                     <select name="depId">
                         <#list departments! as i>
                             <#if employee.career.id=employee.career.id>
-                                <option value="${i.id}" selected>${i.depName}</option>
+                                <option value="${i.id?c}" selected>${i.depName}</option>
                             <#else >
-                                <option value="${i.id}">${i.depName}</option>
+                                <option value="${i.id?c}">${i.depName}</option>
                             </#if>
                         </#list>
                     </select>
@@ -44,9 +44,9 @@
                     <select name="careeId">
                         <#list careers as i>
                             <#if employee.career.id=employee.career.id>
-                       <option value="${i.id}" selected>${i.careerName!}</option>
+                       <option value="${i.id?c}" selected>${i.careerName!}</option>
                             <#else >
-                       <option value="${i.id}">${i.careerName!}</option>
+                       <option value="${i.id?c}">${i.careerName!}</option>
                             </#if>
                         </#list>
                     </select>

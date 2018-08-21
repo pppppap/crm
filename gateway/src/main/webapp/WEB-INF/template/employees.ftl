@@ -65,9 +65,9 @@
                     <option value="0">所有部门</option>
                     <#list departments as i>
                         <#if dep_id?? && dep_id?number==i.id>
-                            <option value="${i.id}" selected>${i.depName}</option>
+                            <option value="${i.id?c}" selected>${i.depName}</option>
                         <#else >
-                            <option value="${i.id}">${i.depName}</option>
+                            <option value="${i.id?c}">${i.depName}</option>
                         </#if>
 
                     </#list>
@@ -123,7 +123,7 @@
             <#else>
                 <tr>
             </#if>
-            <td>${i.id!}</td>
+            <td>${i.id!?c}</td>
             <td>${i.name!}</td>
             <td>${i.sex!}</td>
             <td>${i.age!}</td>
@@ -133,8 +133,8 @@
             <td>${i.email!}</td>
             <td>${i.address!}</td>
             <td><#if i.inDate??>${i.inDate?string('yyyy-MM-dd')}</#if></td>
-            <td><a href="/employee/update?id=${i.id}" class="tablelink">修改</a>
-                <a class="tablelink" href="javascript:" onclick="delete_employee(${i.id})">删除</a>
+            <td><a href="/employee/update?id=${i.id?c}" class="tablelink">修改</a>
+                <a class="tablelink" href="javascript:" onclick="delete_employee(${i.id?c})">删除</a>
             </td>
 
         </tr>
@@ -217,7 +217,7 @@
                     <label>部门</label>
                     <select name="depId">
                     <#list departments as i>
-                        <option value="${i.id}">${i.depName}</option>
+                        <option value="${i.id?c}">${i.depName}</option>
                     </#list>
                     </select>
                     <i style="color: red;">*</i>
@@ -226,7 +226,7 @@
                     <label>职位</label>
                     <select name="careerId">
                     <#list careers as i>
-                        <option value="${i.id}">${i.careerName!}</option>
+                        <option value="${i.id?c}">${i.careerName!}</option>
                     </#list>
                     </select>
                     <i class="required">*</i>

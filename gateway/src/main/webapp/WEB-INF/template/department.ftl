@@ -52,11 +52,11 @@
             <#else>
                     <tr>
             </#if>
-            <td>${dept.id!}</td>
+            <td>${dept.id!?c}</td>
             <td>${dept.depName!}</td>
             <td>${dept.depDesc!}</td>
-            <td><a href="/department/updatedepartment?id=${dept.id}" class="tablelink">修改</a>
-                <a class="tablelink" href="javascript:" onclick="delete_department(${dept.id})">
+            <td><a href="/department/updatedepartment?id=${dept.id?c}" class="tablelink">修改</a>
+                <a class="tablelink" href="javascript:" onclick="delete_department(${dept.id?c})">
                     删除</a></td>
         </tr>
         </#list>

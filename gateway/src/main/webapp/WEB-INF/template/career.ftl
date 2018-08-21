@@ -5,21 +5,37 @@
     <title>新增员工信息</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/css/employee.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/panel.css" rel="stylesheet" type="text/css"/>
 </head>
-
+<style>
+    .panel .formbody {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 450px;
+        height: 250px;
+        margin-top: -125px;
+        margin-left: -225px;
+        background: #FFF;
+    }
+</style>
 <body>
 
 <div class="place">
     <span>位置:</span>
     <ul class="placeul">
         <li><a href="/index">首页</a></li>
-        <li><a href="/career/show_career">职业信息</a></li>
+        <li><a href="/career/show_career">职位信息</a></li>
     </ul>
 </div>
 
 <div class="formbody">
 
-    <div class="formtitle"><span>职业信息</span></div>
+    <div class="tools" style="display: inline-block;float: none;">
+        <ul class="toolbar">
+            <li onclick="$('.panel').show();"><span><img src="/images/t01.png"/></span>添加</li>
+        </ul>
+    </div>
 
     <table class="tablelist">
         <thead>
@@ -37,11 +53,11 @@
             <#else>
                 <tr>
             </#if>
-            <td>${i.id!}</td>
+            <td>${i.id!?c}</td>
             <td>${i.careerName!}</td>
             <td>${i.careerDesc!}</td>
-            <td><a href="/employee/update?id=${i.id}" class="tablelink">修改</a>
-                <a class="tablelink" href="javascript:" onclick="delete_employee(${i.id})">删除</a>
+            <td><a href="/employee/update?id=${i.id?c}" class="tablelink">修改</a>
+                <a class="tablelink" href="javascript:" onclick="delete_career('${i.id?c}')">删除</a>
             </td>
         </tr>
         </tbody>
@@ -93,51 +109,105 @@
         </#escape>
     </div>
 
+    <div class="tip">
+        <div class="tiptop"><span>提示信息</span><a></a></div>
 
+        <div class="tipinfo">
+            <span><img src="/images/ticon.png"/></span>
+            <div class="tipright">
+                <p>是否确认删除 ？</p>
+                <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+            </div>
+        </div>
+
+        <div class="tipbtn">
+            <input type="button" class="sure" value="确定"/>&nbsp;
+            <input type="button" class="cancel" value="取消"/>
+        </div>
+
+    </div>
+</div>
+<div class="panel" style="display: none;">
+    <div class="formbody">
+        <div class="formtitle"><span>职位信息</span></div>
+        <ul class="forminfo">
+            <form id="add_career">
+                <li><label>职位名称</label><input name="careerName" type="text" class="dfinput"/></li>
+                <li><label>职位描述</label><input name="careerDesc" type="text" class="dfinput"/></li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input onclick="add_career()" type="button" class="btn" value="添加"/>
+                    <input onclick="$('.panel').hide()" type="button" class="btn" value="关闭"/>
+                </li>
+            </form>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
 <script language="JavaScript" src="/js/jquery.js"></script>
-    <script>
-        function delete_career(id) {
+<script>
+    var delete_id = -1;
+    $(document).ready(function () {
+        $("#delete_click").click(function () {
+            $(".tip").fadeIn(200);
+        });
+
+        $(".tiptop a").click(function () {
+            $(".tip").fadeOut(200);
+        });
+
+        $(".sure").click(function () {
+            do_delete()
+            $(".tip").fadeOut(100);
+        });
+
+        $(".cancel").click(function () {
+            $(".tip").fadeOut(100);
+        });
+
+    });
+
+
+    function delete_career(id) {
+        delete_id = id
+        $(".tip").fadeIn(200);
+    }
+
+    function do_delete() {
+        if (delete_id !== -1) {
             $.ajax({
                 dataType: "json",
-                url: "/career/delete_career",
-                data: {id: id},
+                url: "/career/do_delete",
+                data: {id: delete_id},
                 type: "post",
                 success: function (result) {
                     if (result.code === 200) {
+                        window.location.reload(true);
                         alert("删除成功！")
                     } else {
                         alert("删除失败！")
                     }
-                    window.location.reload();
                 }
             })
+            delete_id = -1
         }
+    }
 
-        function careerId(id) {
-            $.ajax({
-                dataType: "json",
-                url: "/career/careerId",
-                data: {careerId: id},
-                type: "post",
-            })
-            window.open("/career/updateCareer", "_self")
-        }
-
-        //分页
-        function go(url) {
-            window.open(url, "_self")
-        }
-
-        //上一页
-        function beforepage(now_page) {
-            go("/career/career?page=" + (now_page - 1))
-        }
-
-        //下一页
-        function nextpage(now_page) {
-            go("/career/career?page=" + (now_page + 1))
-        }
-    </script>
+    function add_career() {
+        $.ajax({
+            dataType: "json",
+            url: "/career/do_add",
+            data: $('#add_career').serialize(),
+            type: "post",
+            success: function (result) {
+                if (result.code === 200) {
+                    window.location.reload(true);
+                    alert("添加成功！")
+                } else {
+                    alert("添加失败！")
+                }
+            }
+        })
+    }
+</script>

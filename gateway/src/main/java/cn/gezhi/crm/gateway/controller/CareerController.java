@@ -25,10 +25,9 @@ import java.io.UnsupportedEncodingException;
 public class CareerController {
     @Autowired
     private CareerService careerService;
-    private static final int PAGESIZE = 3;
-    private int careerId;
+    private static final int PAGESIZE = 10;
 
-    @RequestMapping("show_career")
+    @RequestMapping("/show_career")
     public String showCareer(HttpServletRequest request, Model model) {
         String p = request.getParameter("page");
         int page = p == null ? 1 : Integer.parseInt(p);
@@ -38,9 +37,9 @@ public class CareerController {
     }
 
     //删除
-    @RequestMapping(value = "/delete_career", method = RequestMethod.POST)
+    @RequestMapping(value = "/do_delete", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult delete_career(HttpServletRequest request) {
+    public JsonResult deleteCareer(HttpServletRequest request) {
         Integer id = Integer.parseInt(request.getParameter("id"));
         int n = careerService.deleteById(id);
         JsonResult result = new JsonResult();
@@ -54,25 +53,12 @@ public class CareerController {
         return result;
     }
 
-    //添加
-    @RequestMapping("/addCareer")
-    public String saveCareer() {
-        return "addCareer";
-    }
 
-    @RequestMapping(value = "/add_career", method = RequestMethod.POST)
+    @RequestMapping(value = "/do_add", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult add_career(HttpServletRequest request) {
-        try {
-            request.setCharacterEncoding("utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        Integer id = Integer.parseInt(request.getParameter("career_id"));
-        String career_name = request.getParameter("career_name");
-        String career_desc = request.getParameter("career_desc");
-        int n = careerService.save(new Career(id, career_name, career_desc));
+    public JsonResult addCareer(Career career) {
         JsonResult result = new JsonResult();
+        int n = careerService.save(career);
         if (n > 0) {
             result.setCode(200);
             result.setMsg("添加成功！");
@@ -83,29 +69,18 @@ public class CareerController {
         return result;
     }
 
-    //更改
-    @RequestMapping("/updateCareer")
-    public String updateCareer() {
+    @RequestMapping("/update_career")
+    public String updateCareer(int id, Model model) {
+        Career career = careerService.getById(id);
+        model.addAttribute("career", career);
         return "updateCareer";
     }
 
-    @RequestMapping("/careerId")
-    public String careerId(HttpServletRequest request) {
-        this.careerId = Integer.parseInt(request.getParameter("careerId"));
-        return "updateCareer";
-    }
 
-    @RequestMapping(value = "/update_career", method = RequestMethod.POST)
+    @RequestMapping(value = "/do_update", method = RequestMethod.POST)
     @ResponseBody
-    public JsonResult update_career(HttpServletRequest request) {
-        try {
-            request.setCharacterEncoding("utf-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        String career_name = request.getParameter("career_name");
-        String career_desc = request.getParameter("career_desc");
-        int n = careerService.update(new Career(careerId, career_name, career_desc));
+    public JsonResult doUpdate(Career career) {
+        int n = careerService.update(career);
         JsonResult result = new JsonResult();
         if (n > 0) {
             result.setCode(200);

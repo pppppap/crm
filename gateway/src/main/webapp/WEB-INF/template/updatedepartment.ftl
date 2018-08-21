@@ -21,7 +21,7 @@
     <div class="formtitle"><span>部门信息</span></div>
     <form action="/department/submitupdation">
         <ul class="forminfo">
-            <li><label>部门编号</label><input name="id" type="text" class="dfinput" value="${department.id!}"
+            <li><label>部门编号</label><input name="id" type="text" class="dfinput" value="${department.id!?c}"
                                           readonly="true"/>
                 <i class="required">*</i>
             </li>
