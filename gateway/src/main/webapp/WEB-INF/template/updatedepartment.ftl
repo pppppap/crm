@@ -19,26 +19,33 @@
 <div class="formbody">
 
     <div class="formtitle"><span>部门信息</span></div>
-<form action="/department/submitupdation">
-    <ul class="forminfo">
-        <li><label>部门编号</label><input name="id" type="text" class="dfinput" value="${department.id!}" readonly="true"/>
-            <i class="required">*</i>
-        </li>
-        <li>
-        <li><label>部门</label><input name="depName" type="text" class="dfinput" value="${department.depName!}"/>
+    <form action="/department/submitupdation">
+        <ul class="forminfo">
+            <li><label>部门编号</label><input name="id" type="text" class="dfinput" value="${department.id!?c}"
+                                          readonly="true"/>
+                <i class="required">*</i>
+            </li>
+            <li>
+            <li><label>部门</label><input name="depName" type="text" class="dfinput" value="${department.depName!}"/>
 
-            <i style="color: red;">*</i>
-        </li>
+                <i style="color: red;">*</i>
+            </li>
 
-        <li><label>部门描述</label><input name="depDesc" type="text" class="dfinput" value="${department.depDesc!}"/>
+            <li><label>部门描述</label><input name="depDesc" type="text" class="dfinput" value="${department.depDesc!}"/>
 
-            <i style="color: red;">*</i>
-        </li>
+                <i style="color: red;">*</i>
+            </li>
 
-        <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认修改" "/></li>
-    </ul>
-</form>
-    
+            <li>
+                <label>&nbsp;</label>
+                <input name="" type="submit" class="btn" value="修改" "/>
+                <a href="/department/show">
+                    <input type="button" class="btn" value="返回" "/>
+                </a>
+            </li>
+        </ul>
+    </form>
+
 </div>
 </body>
 </html>

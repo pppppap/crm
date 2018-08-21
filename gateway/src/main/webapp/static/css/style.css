@@ -135,8 +135,10 @@ h2{font-weight:normal;}
 .pagin .paginList .paginItem.more,.pagin .paginList .paginItem.more a:hover{ cursor:default;}
 .pagin .paginList .paginItem.more:hover{background:#FFF;}
 .pagin .paginList .paginItem.more a{color:#737373;}
-.pagepre{background:url(../images/pre.gif) no-repeat center center; width:31px; height:28px;}
+.pagepre{background:url(../images/pre2.gif) no-repeat center center; width:31px; height:28px;}
 .pagenxt{background:url(../images/next.gif) no-repeat center center; width:31px; height:28px;}
+.pagepre2{background:url(../images/pre.gif) no-repeat center center; width:31px; height:28px;}
+.pagenxt2{background:url(../images/next2.gif) no-repeat center center; width:31px; height:28px;}
 
 /*index*/
 .mainindex{padding:20px; overflow:hidden;}

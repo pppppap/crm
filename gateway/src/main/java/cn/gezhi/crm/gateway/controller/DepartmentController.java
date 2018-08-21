@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
-    private static final int PAGESIZE = 5;
+    private static final int PAGESIZE = 12;
 
     @RequestMapping("/show")
     public String showDepartment(HttpServletRequest request,Model model) {
@@ -56,11 +56,6 @@ public class DepartmentController {
         return result;
     }
 
-    @RequestMapping("/adddepartment")
-    public String adddepartment() {
-        return "adddepartment";
-    }
-
     @RequestMapping("/updatedepartment")
     public String updateDepartment(HttpServletRequest request, Model model) {
         int i = Integer.parseInt(request.getParameter("id"));
@@ -84,8 +79,6 @@ public class DepartmentController {
         Integer id = department.getId();
         String depName = department.getDepName();
         String depDesc = department.getDepDesc();
-        System.out.println(depName);
-        System.out.println(depDesc);
         departmentService.saveSelective(department);
         return "forward:/department/show";
     }

@@ -12,6 +12,15 @@
     <groupId>cn.gezhi.crm</groupId>
     <artifactId>customer</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.gezhi.crm</groupId>
+            <artifactId>org</artifactId>
+            <version>${crm.version}</version>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <resources>
             <resource>
@@ -58,12 +67,4 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>cn.gezhi.crm</groupId>
-            <artifactId>org</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 </project>

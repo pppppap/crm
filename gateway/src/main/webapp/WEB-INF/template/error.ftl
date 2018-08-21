@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
-<link href="css/style.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script>
+<link href="/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
 
 <script language="javascript">
 	$(function(){
@@ -33,7 +33,7 @@
     
     <h2>非常遗憾，您访问的页面不存在！</h2>
     <p>看到这个提示，就自认倒霉吧!</p>
-    <div class="reindex"><a href="main.ftl" target="_parent">返回首页</a></div>
+    <div class="reindex"><a href="/index" target="_parent">返回首页</a></div>
     
     </div>
 </body>

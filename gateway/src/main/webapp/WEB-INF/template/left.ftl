@@ -36,11 +36,12 @@
 <dl class="leftmenu">
     <dd>
         <div class="title">
-            <span><img src="/images/leftico02.png"/></span>员工管理
+            <span><img src="/images/leftico02.png"/></span>人事管理
         </div>
         <ul class="menuson">
             <li><cite></cite><a href="/employee/show" target="rightFrame">员工列表</a></li>
-            <li><cite></cite><a href="/employee/add" target="rightFrame">增加员工</a></li>
+            <li><cite></cite><a href="/department/show" target="rightFrame">部门列表</a></li>
+            <li><cite></cite><a href="/career/show_career" target="rightFrame">职位列表</a></li>
         </ul>
     </dd>
     <dd>
@@ -52,24 +53,7 @@
             <li><cite></cite><a href="/user/addUser" target="rightFrame">新增用户</a></li>
         </ul>
     </dd>
-    <dd>
-        <div class="title">
-            <span><img src="/images/leftico02.png"/></span>部门管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="/department/show" target="rightFrame">部门列表</a></li>
-            <li><cite></cite><a href="/department/adddepartment" target="rightFrame">新增部门</a></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="/images/leftico02.png"/></span>职位管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="/career/show_career" target="rightFrame">职位列表</a></li>
-            <li><cite></cite><a href="/career/addCareer" target="rightFrame">新增职位</a></li>
-        </ul>
-    </dd>
+
 </dl>
 </body>
 </html>
