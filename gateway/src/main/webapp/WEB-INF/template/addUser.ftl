@@ -21,7 +21,7 @@
         <form id="addUser" action="##" method="post">
             <li><label>用户名</label><input id="username" name="username" type="text" class="dfinput"/><i class="required">*</i></li>
             <li><label>用户密码</label><input id="password" name="password" type="text" class="dfinput"/><i class="required">*</i></li>
-            <li><label>员工ID</label><input id="empId" name="empId" type="text" class="dfinput"/><i class="required">*</i></li>
+            <li><label>员工姓名</label><input id="empName" name="empName" type="text" class="dfinput"/><i class="required">*</i></li>
             <li><label>&nbsp;</label><input type="button" class="btn" value="确认新增" onclick="add_user()"/></li>
         </form>
     </ul>
@@ -38,11 +38,11 @@
             data: $('#addUser').serialize(),
             success: function (result) {
                 if (result.code === 200) {
-                    alert("新增成功")
+                    alert(result.msg)
+                    window.location.reload();
                 } else {
-                    alert("新增失败")
+                    alert(result.msg)
                 }
-                window.location.reload();
             }
         })
     }

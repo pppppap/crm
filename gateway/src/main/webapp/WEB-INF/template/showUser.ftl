@@ -32,6 +32,7 @@
 <div class="formbody">
 
     <div class="search_box" style="float: left;">
+
         <div>
             <select name="search_type">
                 <option value="1">用户名</option>
@@ -49,33 +50,35 @@
                 <li onclick="$('.panel').show();"><span><img src="/images/t01.png"/></span>添加</li>
             </ul>
         </div>
+
     </div>
 
     <table class="tablelist">
+        <thead>
         <tr>
+
             <th width="80">用户ID</th>
             <th>用户名</th>
             <th>用户密码</th>
             <th>员工ID</th>
             <th width="100">操作</th>
         </tr>
-
+        </thead>
+        <tbody>
         <#list page.list as i>
-
         <tr>
             <td>${i.id!?c}</td>
             <td>${i.username!}</td>
             <td>${i.password!}</td>
-            <td>${i.employeeId!?c}</td>
 
+            <td>${(i.employee.name)!}</td>
             <td>
                 <a href="/user/updateUser?id=${i.id?c}&username=${i.username}" class="tablelink">修改</a>
                 <a class="tablelink" href="javascript:" onclick="delete_user(${i.id!?c})">删除</a>
             </td>
         </tr>
-
         </#list>
-
+        </tbody>
     </table>
 
     <div class="pagin">
@@ -101,6 +104,7 @@
             <#else>
                 <#list 1..page.totalPage as i>
                     <#if (i==page.currentPage)>
+
                     <li class="paginItem current"><a href="/user/userPage?page=${i}">${i}</a>
                     </li>
                     <#else>

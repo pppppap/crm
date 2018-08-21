@@ -1,5 +1,6 @@
 package cn.gezhi.crm.org.dao;
 
+import cn.gezhi.crm.org.dto.UserDTO;
 import cn.gezhi.crm.org.entity.User;
 import cn.gezhi.crm.org.entity.UserExample;
 import java.util.List;
@@ -16,9 +17,9 @@ public interface UserMapper {
 
     int insertSelective(User record);
 
-    List<User> selectByExample(UserExample example);
+    List<UserDTO> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Integer id);
+    UserDTO selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

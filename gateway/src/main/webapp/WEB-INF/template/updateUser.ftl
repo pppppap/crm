@@ -22,7 +22,7 @@
             <li><label>用户ID</label><input id="id" name="id" type="text" class="dfinput" value="${userId}" readonly="readonly"/></li>
             <li><label>用户名</label><input id="username" name="username" type="text" class="dfinput" value="${username}" readonly="readonly"/></li>
             <li><label>用户密码</label><input id="password" name="password" type="text" class="dfinput"/></li>
-            <li><label>员工ID</label><input id="empId" name="empId" type="text" class="dfinput"/></li>
+            <li><label>员工姓名</label><input id="empName" name="empName" type="text" class="dfinput"/></li>
             <li><label>&nbsp;</label><input type="button" class="btn" value="确认修改" onclick="update_user()"/></li>
         </form>
     </ul>
@@ -39,11 +39,11 @@
             data: $('#updateUser').serialize(),
         success: function (result) {
             if (result.code === 200) {
-                alert("修改成功")
+                alert(result.msg)
+                window.open("/user/show_user", "_self")
             } else {
-                alert("修改失败")
+                alert(result.msg)
             }
-            window.open("/user/show_user", "_self")
         }
     })
     }
