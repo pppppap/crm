@@ -42,15 +42,7 @@
             <li><cite></cite><a href="/employee/show" target="rightFrame">员工列表</a></li>
             <li><cite></cite><a href="/department/show" target="rightFrame">部门列表</a></li>
             <li><cite></cite><a href="/career/show_career" target="rightFrame">职位列表</a></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="/images/leftico02.png"/></span>用户管理
-        </div>
-        <ul class="menuson">
             <li><cite></cite><a href="/user/show_user" target="rightFrame">用户列表</a></li>
-            <li><cite></cite><a href="/user/addUser" target="rightFrame">新增用户</a></li>
         </ul>
     </dd>
 
