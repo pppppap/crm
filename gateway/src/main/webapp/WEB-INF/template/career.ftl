@@ -40,10 +40,10 @@
     <table class="tablelist">
         <thead>
         <tr>
-            <th width="100">职位编号</th>
-            <th width="100">职位名称</th>
-            <th width="500">职位描述</th>
-            <th width="100"></th>
+            <th width="80">职位编号</th>
+            <th>职位名称</th>
+            <th>职位描述</th>
+            <th width="100">操作</th>
         </tr>
         </thead>
     <tbody>

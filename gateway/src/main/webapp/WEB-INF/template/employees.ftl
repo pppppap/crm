@@ -103,7 +103,7 @@
     <table class="tablelist">
         <thead>
         <tr>
-            <th width="50">编号<i class="sort"><img src="/images/px.gif"/></i></th>
+            <th width="80">编号<i class="sort"><img src="/images/px.gif"/></i></th>
             <th>姓名</th>
             <th width="40">性别</th>
             <th width="40">年龄</th>

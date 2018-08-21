@@ -39,7 +39,7 @@
     <table class="tablelist">
         <thead>
         <tr>
-            <th>部门编号<i class="sort"><img src="/images/px.gif"/></i></th>
+            <th width="80">部门编号<i class="sort"><img src="/images/px.gif"/></i></th>
             <th>部门名称</th>
             <th>部门描述</th>
             <th width="100">操作</th>
