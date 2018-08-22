@@ -21,9 +21,14 @@
             <artifactId>org</artifactId>
             <version>${crm.version}</version>
         </dependency>
+        <dependency>
+            <groupId>cn.gezhi.crm</groupId>
+            <artifactId>customer</artifactId>
+            <version>${crm.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
-        <finalName>gateway</finalName>
+        <finalName>ROOT</finalName>
     </build>
 </project>

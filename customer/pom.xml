@@ -11,6 +11,7 @@
 
     <groupId>cn.gezhi.crm</groupId>
     <artifactId>customer</artifactId>
+    <version>${crm.version}</version>
 
     <dependencies>
         <dependency>
@@ -22,6 +23,7 @@
 
 
     <build>
+        <finalName>customer</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
