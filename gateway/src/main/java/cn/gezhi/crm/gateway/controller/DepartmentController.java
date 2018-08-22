@@ -31,10 +31,10 @@ public class DepartmentController {
     private static final int PAGESIZE = 12;
 
     @RequestMapping("/show")
-    public String showDepartment(HttpServletRequest request,Model model) {
+    public String showDepartment(HttpServletRequest request, Model model) {
         String s = request.getParameter("page");
-        int page =1;
-        if (s!=null) {
+        int page = 1;
+        if (s != null) {
             page = Integer.parseInt(s);
         }
         PageModel<Department> pageModel = departmentService.getDepartmentPage(page, PAGESIZE);
@@ -87,9 +87,9 @@ public class DepartmentController {
     public String search(HttpServletRequest request, Model model) {
         String searchType = request.getParameter("search_type");
         String s = request.getParameter("page");
-        int page =1;
-        if (s!=null) {
-             page = Integer.parseInt(s);
+        int page = 1;
+        if (s != null) {
+            page = Integer.parseInt(s);
         }
         String key = request.getParameter("key").trim();
 
