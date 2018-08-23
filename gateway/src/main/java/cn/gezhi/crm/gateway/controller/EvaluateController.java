@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/evaluate")
 public class EvaluateController {
-    private static final int PAGE_SIZE = 10;
+    private static final int PAGE_SIZE = 15;
 
     @Autowired
     private EvaluateService evaluateService;
@@ -71,6 +71,7 @@ public class EvaluateController {
                 default:
                     break;
             }
+            queryDTO.setSearchType(request.getParameter("searchType"));
             model.addAttribute("key", key);
             uri = "searchType=" + searchType + "&key=" + key;
         } else {
