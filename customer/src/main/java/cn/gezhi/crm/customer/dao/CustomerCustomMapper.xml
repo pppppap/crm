@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.gezhi.crm.customer.dao.CustomerCustomMapper">
+    <resultMap id="BaseResultMap" type="cn.gezhi.crm.customer.entity.vo.CustomerCustom">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="idcard" property="idcard" jdbcType="VARCHAR"/>
+        <result column="tel" property="tel" jdbcType="VARCHAR"/>
+        <result column="loan" property="loan" jdbcType="DECIMAL"/>
+        <!--<result column="bank_id" property="bankId" jdbcType="INTEGER" />-->
+        <result column="realloan" property="realloan" jdbcType="DECIMAL"/>
+        <result column="process" property="process" jdbcType="VARCHAR"/>
+        <result column="common" property="common" jdbcType="DECIMAL"/>
+        <result column="note" property="note" jdbcType="VARCHAR"/>
+        <!--<result column="salesman_id" property="salesmanId" jdbcType="INTEGER" />-->
+        <result column="attention_level" property="attentionLevel" jdbcType="CHAR"/>
+        <!--<result column="evalute_id" property="evaluteId" jdbcType="INTEGER" />-->
+        <result column="customer_level" property="customerLevel" jdbcType="CHAR"/>
+        <result column="date" property="date" jdbcType="DATE"/>
+        <result column="security_id" property="securityId" jdbcType="VARCHAR"/>
+        <association property="bank" column="bank_id" select="cn.gezhi.crm.customer.dao.BankMapper.selectByPrimaryKey"/>
+        <association property="salesman" column="salesman_id" select="employee_select"/>
+        <association property="evaluteman" column="evalute_id" select="employee_select"/>
+
+        <collection property="cars" column="id" select="cars_select"/>
+        <collection property="houses" column="id" select="houses_select"/>
+    </resultMap>
+
+    <select id="employee_select" resultMap="employee_select_map">
+        select id,name from employee where id=#{id}
+    </select>
+    <resultMap id="employee_select_map" type="cn.gezhi.crm.org.entity.Employee">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="career_id" property="careerId" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="cars_select" resultMap="cars_select_map">
+        select * from car where customer_id = #{id}
+    </select>
+    <resultMap id="cars_select_map" type="cn.gezhi.crm.customer.entity.Car">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="houses_select" resultMap="houses_select_map">
+        select * from house where customer_id = #{id}
+    </select>
+    <resultMap id="houses_select_map" type="cn.gezhi.crm.customer.entity.House">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uri" property="uri" jdbcType="VARCHAR"/>
+        <result column="customer_id" property="customerId" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+    id, name, idcard, tel, loan, bank_id, realloan, process, common, note, salesman_id,
+    attention_level, evalute_id, customer_level, date, security_id
+    </sql>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gezhi.crm.customer.entity.CustomerExample">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from customer
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from customer
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+</mapper>

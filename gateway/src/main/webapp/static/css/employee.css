@@ -21,3 +21,7 @@ select{font-size:12px;background:#fff;color:#000;}
 .tablelink{width: 40px;display: inline-block;cursor:pointer;}
 
 
+.input_add{cursor: pointer;display: inline-block;}
+.input_add div{line-height: 33px;height: 33px;padding-right: 10px;margin-right: 5px;border-radius: 3px;cursor: pointer;}
+.input_add span{float: left;margin-left: 10px;margin-right: 5px;margin-top: 5px;}
+.input_add img{width: 25px;height: 25px;display: inline-block;}

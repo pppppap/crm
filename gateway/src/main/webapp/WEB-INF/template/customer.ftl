@@ -5,9 +5,8 @@
     <title>新增员工信息</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/css/employee.css" rel="stylesheet" type="text/css"/>
-    <link href="/css/page.css" rel="stylesheet" type="text/css"/>
 </head>
-
+<#escape x as x!"">
 <body>
 
 <div class="place">
@@ -22,56 +21,98 @@
 <div class="formbody ">
 
     <div class="search_box" style="float: left;">
-
-        <div>
-            <select name="search_type">
-                <option value="1">姓名</option>
-                <option value="2">身份证</option>
-                <option value="2">手机</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;margin-right: 5px;">
-            <input class="input_border" name="key" type="text" placeholder="请输入搜素信息">
-        </div>
-        <div class="common_button">
-            <li class="click"><span><img src="/images/ico06.png"></span>搜索</li>
-        </div>
+        <form id="search_form" action="/evaluate/filter" method="get">
+            <div>
+                <select name="searchType">
+                    <#if (queryDTO.searchType)??>
+                        <option value="1" ${(queryDTO.searchType=='1')?string('selected','')}>姓名</option>
+                        <option value="2" ${(queryDTO.searchType=='2')?string('selected','')}>身份证</option>
+                        <option value="3" ${(queryDTO.searchType=='3')?string('selected','')}>手机</option>
+                    <#else >
+                        <option value="1">姓名</option>
+                        <option value="2">身份证</option>
+                        <option value="3">手机</option>
+                    </#if>
+                </select>
+            </div>
+            <div style="margin-left: 10px;margin-right: 5px;">
+                <input class="input_border" name="key" type="text" placeholder="请输入搜素信息" value="${key!}">
+            </div>
+            <div class="common_button">
+                <li class="click" onclick="$('#search_form').submit()"><span><img src="/images/ico06.png"></span>搜索</li>
+            </div>
+        </form>
     </div>
     <div class="search_box" style="float: right;">
-        <div>
-            <select>
-                <option value="0">审批进度</option>
-                <option>进件中</option>
-                <option value="">初审中</option>
-                <option value="">审核未通过</option>
-                <option value="">放款中</option>
-                <option value="">审核未通过</option>
-                <option value="">已放款</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;">
-            <select style="">
-                <option value="0">放款机构</option>
-                <option value="">xx银行</option>
-                <option value="">yy银行</option>
-                <option value="">zz银行</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;">
-            <select>
-                <option value="0">客户等级</option>
-                <option value="">优</option>
-            </select>
-        </div>
-        <div style="margin-left: 10px;">
-            <select>
-                <option value="0">客户关注等级</option>
-                <option value="">A</option>
-            </select>
-        </div>
-        <div class="common_button">
-            <li class="click"><span><img src="/images/ico06.png"></span>筛选</li>
-        </div>
+        <form action="/evaluate/filter" method="get" id="filter_form">
+            <div>
+                <select name="process">
+                    <option value="0">审批进度</option>
+                    <#if (queryDTO.process)??>
+                        <option value="进件中" ${(queryDTO.process=='进件中')?string('selected','')}>进件中</option>
+                        <option value="初审中" ${(queryDTO.process=='初审中')?string('selected','')}>初审中</option>
+                        <option value="审核未通过" ${(queryDTO.process=='审核未通过')?string('selected','')}>审核未通过</option>
+                        <option value="审核通过" ${(queryDTO.process=='审核通过')?string('selected','')}>审核通过</option>
+                        <option value="放款中" ${(queryDTO.process=='放款中')?string('selected','')}>放款中</option>
+                        <option value="已放款" ${(queryDTO.process=='已放款')?string('selected','')}>已放款</option>
+                    <#else >
+                        <option value="进件中">进件中</option>
+                        <option value="初审中">初审中</option>
+                        <option value="审核未通过">审核未通过</option>
+                        <option value="审核通过">审核通过</option>
+                        <option value="放款中">放款中</option>
+                        <option value="已放款">已放款</option>
+                    </#if>
+                </select>
+            </div>
+            <div style="margin-left: 10px;">
+                <select name="bankId">
+                    <option value="0">放款机构</option>
+                <#list banks as i>
+                    <#if (queryDTO.bankId)??>
+                        <option value="${i.id}" ${(queryDTO.bankId==i.id)?string('selected','')}>${i.name}</option>
+                    <#else>
+                        <option value="${i.id}">${i.name}</option>
+                    </#if>
+                </#list>
+                </select>
+            </div>
+            <div style="margin-left: 10px;">
+                <select name="customerLevel">
+                    <option value="0">客户等级</option>
+                    <#if (queryDTO.customerLevel)??>
+                        <option value="优" ${(queryDTO.customerLevel=='优')?string('selected','')}>优</option>
+                        <option value="良" ${(queryDTO.customerLevel=='良')?string('selected','')}>良</option>
+                        <option value="中" ${(queryDTO.customerLevel=='中')?string('selected','')}>中</option>
+                        <option value="差" ${(queryDTO.customerLevel=='差')?string('selected','')}>差</option>
+                    <#else >
+                        <option value="优">优</option>
+                        <option value="良">良</option>
+                        <option value="中">中</option>
+                        <option value="差">差</option>
+                    </#if>
+                </select>
+            </div>
+            <div style="margin-left: 10px;">
+                <select name="attentionLevel">
+                    <option value="0">客户关注等级</option>
+                    <#if (queryDTO.attentionLevel)??>
+                    <option value="A" ${(queryDTO.attentionLevel=='A')?string('selected','')}>A</option>
+                    <option value="B" ${(queryDTO.attentionLevel=='B')?string('selected','')}>B</option>
+                    <option value="C" ${(queryDTO.attentionLevel=='C')?string('selected','')}>C</option>
+                    <option value="D" ${(queryDTO.attentionLevel=='D')?string('selected','')}>D</option>
+                    <#else >
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    </#if>
+                </select>
+            </div>
+            <div class="common_button">
+                <li class="click" onclick="$('#filter_form').submit()"><span><img src="/images/ico06.png"></span>筛选</li>
+            </div>
+        </form>
     </div>
     <table class="tablelist">
         <thead>
@@ -89,214 +130,103 @@
         </tr>
         </thead>
         <tbody>
+        <#list page.list as i>
         <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
+            <td>${i.name}</td>
+            <td>
+            <#if i.tel??>
+            <#list i.tel?split("|") as t>
+                ${t}<br>
+            </#list>
+            </#if>
+            </td>
+            <td>${i.attentionLevel!}</td>
+            <td>${i.customerLevel!}</td>
+            <td>${i.idcard!}</td>
+            <td>${i.process!}</td>
+            <td>${(i.bank.name)!}</td>
+            <td>${(i.salesman.name)!}</td>
+            <td>
+            <#if i.date??>
+                ${i.date?string("yyyy-MM-dd hh:mm:ss")}
+            </#if>
+            </td>
+            <td>
+                <a href="/evaluate/getOne/${i.id?c}" class="tablelink">详情</a>
+                <a href="#" class="tablelink">修改</a>
+                <a class="tablelink">删除</a>
+            </td>
         </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
-        <tr>
-            <td>张三</td>
-            <td>15876656366</td>
-            <td>A</td>
-            <td>优</td>
-            <td>511027372778338272</td>
-            <td>进件中</td>
-            <td>平安银行</td>
-            <td>xxx</td>
-            <td>2018-01-02 09:51:47</td>
-            <td><a href="#" class="tablelink">详情</a><a href="#" class="tablelink">修改</a><a class="tablelink">删除</a></td>
-        </tr>
+        </#list>
+
         </tbody>
     </table>
 
 
     <div class="pagin">
-        <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+        <div class="message">共<i class="blue">${page.totalCount}</i>条记录，当前显示第&nbsp;<i
+                class="blue">${page.currentPage}
+            &nbsp;</i>页
+        </div>
         <ul class="paginList">
-            <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-            <li class="paginItem"><a href="javascript:;">1</a></li>
-            <li class="paginItem current"><a href="javascript:;">2</a></li>
-            <li class="paginItem"><a href="javascript:;">3</a></li>
-            <li class="paginItem"><a href="javascript:;">4</a></li>
-            <li class="paginItem"><a href="javascript:;">5</a></li>
+        <#if page.currentPage==1>
+            <li class="paginItem"><a href="javascript:"><span class="pagepre2"></a></span></li>
+        <#else>
+            <li class="paginItem"><a href="/evaluate/filter?page=${page.currentPage-1}&${page.url}"><span
+                    class="pagepre"></span></a></li>
+        </#if>
+
+        <#if page.totalPage &gt; 7 >
+            <li class="paginItem"><a href="/evaluate/filter?page=1&${page.url}">1</a></li>
+            <li class="paginItem current"><a href="/evaluate/filter?page=2&${page.url}">2</a></li>
+            <li class="paginItem"><a href="/evaluate/filter?page=3&${page.url}&${page.url}">3</a></li>
+            <li class="paginItem"><a href="/evaluate/filter?page=4">4</a></li>
+            <li class="paginItem"><a href="/evaluate/filter?page=5">5</a></li>
             <li class="paginItem more"><a href="javascript:;">...</a></li>
-            <li class="paginItem"><a href="javascript:;">10</a></li>
-            <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+            <li class="paginItem"><a href="/evaluate/filter?page=${page.totalPage}&${page.url}">${page.totalPage}</a>
+            </li>
+        <#else>
+            <#list 1..page.totalPage as i>
+                <#if (i==page.currentPage)>
+            <li class="paginItem current"><a href="/evaluate/filter?page=${i}&${page.url}">${i}</a>
+            </li>
+                <#else>
+            <li class="paginItem "><a href="/evaluate/filter?page=${i}&${page.url}">${i}</a></li>
+                </#if>
+            </#list>
+        </#if>
+
+        <#if page.currentPage==page.totalPage>
+            <li class="paginItem"><a href="javascript:"><span class="pagenxt2"></a></span></li>
+        <#else >
+            <li class="paginItem"><a href="/evaluate/filter?page=${page.currentPage+1}&${page.url}"><span
+                    class="pagenxt"></span></a></li>
+        </#if>
         </ul>
     </div>
 
 
 </div>
 </body>
+</#escape>
 </html>
 <script language="JavaScript" src="/js/jquery.js"></script>
 <script>
-  function delete_employee(id) {
-    $.ajax({
-      dataType: "json",
-      url: "/delete_employee",
-      data: {
-        id: id
-      },
-      type: "POST",
-      success: function (result) {
-        if (result.code === 200) {
-          alert(result.msg)
-        } else {
-          alert(result.msg)
-        }
-      }
-    })
-  }
+    function delete_employee(id) {
+        $.ajax({
+            dataType: "json",
+            url: "/delete_employee",
+            data: {
+                id: id
+            },
+            type: "POST",
+            success: function (result) {
+                if (result.code === 200) {
+                    alert(result.msg)
+                } else {
+                    alert(result.msg)
+                }
+            }
+        })
+    }
 </script>

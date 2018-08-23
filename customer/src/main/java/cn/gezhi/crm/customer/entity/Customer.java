@@ -3,37 +3,37 @@ package cn.gezhi.crm.customer.entity;
 import java.util.Date;
 
 public class Customer {
-    private Integer id;
+    protected Integer id;
 
-    private String name;
+    protected String name;
 
-    private String idcard;
+    protected String idcard;
 
-    private String tel;
+    protected String tel;
 
-    private Long loan;
+    protected Long loan;
 
-    private Integer bankId;
+    protected Integer bankId;
 
-    private Long realloan;
+    protected Long realloan;
 
-    private String process;
+    protected String process;
 
-    private Long common;
+    protected Long common;
 
-    private String note;
+    protected String note;
 
-    private Integer salesmanId;
+    protected Integer salesmanId;
 
-    private String attentionLevel;
+    protected String attentionLevel;
 
-    private Integer evaluteId;
+    protected Integer evaluteId;
 
-    private String customerLevel;
+    protected String customerLevel;
 
-    private Date date;
+    protected Date date;
 
-    private String securityId;
+    protected String securityId;
 
     public Integer getId() {
         return id;

@@ -45,7 +45,14 @@
             <li><cite></cite><a href="/user/show_user" target="rightFrame">用户列表</a></li>
         </ul>
     </dd>
-
+    <dd>
+        <div class="title">
+            <span><img src="/images/leftico02.png"/></span>客户管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="/evaluate/show" target="rightFrame">客户列表</a></li>
+        </ul>
+    </dd>
 </dl>
 </body>
 </html>
