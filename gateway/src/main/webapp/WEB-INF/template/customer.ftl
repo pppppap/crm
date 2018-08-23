@@ -118,7 +118,7 @@
         <thead>
         <tr>
             <th>姓名</th>
-            <th>电话</th>
+            <th width="100">电话</th>
             <th width="100">客户关注等级</th>
             <th width="70">客户等级</th>
             <th>身份证</th>
@@ -131,12 +131,16 @@
         </thead>
         <tbody>
         <#list page.list as i>
-        <tr>
+        <#if i_index%2==1>
+                <tr class="odd">
+        <#else>
+                <tr>
+        </#if>
             <td>${i.name}</td>
             <td>
             <#if i.tel??>
             <#list i.tel?split("|") as t>
-                ${t}<br>
+                <label style="float: left;">${t}</label>
             </#list>
             </#if>
             </td>
