@@ -56,7 +56,7 @@
             <td>${i.id!?c}</td>
             <td>${i.careerName!}</td>
             <td>${i.careerDesc!}</td>
-            <td><a href="/employee/update?id=${i.id?c}" class="tablelink">修改</a>
+            <td><a href="/career/update_career?id=${i.id?c}" class="tablelink">修改</a>
                 <a class="tablelink" href="javascript:" onclick="delete_career('${i.id?c}')">删除</a>
             </td>
         </tr>
