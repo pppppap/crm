@@ -36,18 +36,38 @@ public class CareerSericeImpl implements CareerService {
         return new PageModel<Career>(employees);
     }
 
+    /**
+     *  通过id查询职位
+     * @param id 职位id
+     * @return 受影响行数
+     */
     public Career getById(int id) {
         return careerMapper.selectByPrimaryKey(id);
     }
 
+    /**
+     *  修改职位信息
+     * @param career 职位的一个对象
+     * @return 受影响行数
+     */
     public int  update(Career career) {
         return careerMapper.updateByPrimaryKey(career);
     }
 
+    /**
+     *  新增一个职位
+     * @param career 新增的职位对象
+     * @return 受影响行数
+     */
     public int save(Career career) {
         return careerMapper.insert(career);
     }
 
+    /**
+     *  撤销职位
+     * @param id 职位id
+     * @return 受影响行数
+     */
     public int deleteById(int id) {
         return careerMapper.deleteByPrimaryKey(id);
     }

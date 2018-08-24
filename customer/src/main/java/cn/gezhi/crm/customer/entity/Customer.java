@@ -162,4 +162,48 @@ public class Customer {
     public void setSecurityId(String securityId) {
         this.securityId = securityId == null ? null : securityId.trim();
     }
+
+    public Customer() {
+    }
+
+    public Customer(Integer id, String name, String idcard, String tel, Long loan, Integer bankId, Long realloan, String process, Long common, String note, Integer salesmanId, String attentionLevel, Integer evaluteId, String customerLevel, Date date, String securityId) {
+        this.id = id;
+        this.name = name;
+        this.idcard = idcard;
+        this.tel = tel;
+        this.loan = loan;
+        this.bankId = bankId;
+        this.realloan = realloan;
+        this.process = process;
+        this.common = common;
+        this.note = note;
+        this.salesmanId = salesmanId;
+        this.attentionLevel = attentionLevel;
+        this.evaluteId = evaluteId;
+        this.customerLevel = customerLevel;
+        this.date = date;
+        this.securityId = securityId;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", tel='" + tel + '\'' +
+                ", loan=" + loan +
+                ", bankId=" + bankId +
+                ", realloan=" + realloan +
+                ", process='" + process + '\'' +
+                ", common=" + common +
+                ", note='" + note + '\'' +
+                ", salesmanId=" + salesmanId +
+                ", attentionLevel='" + attentionLevel + '\'' +
+                ", evaluteId=" + evaluteId +
+                ", customerLevel='" + customerLevel + '\'' +
+                ", date=" + date +
+                ", securityId='" + securityId + '\'' +
+                '}';
+    }
 }
