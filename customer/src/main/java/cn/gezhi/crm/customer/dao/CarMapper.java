@@ -2,7 +2,9 @@ package cn.gezhi.crm.customer.dao;
 
 import cn.gezhi.crm.customer.entity.Car;
 import cn.gezhi.crm.customer.entity.CarExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CarMapper {
@@ -27,4 +29,6 @@ public interface CarMapper {
     int updateByPrimaryKeySelective(Car record);
 
     int updateByPrimaryKey(Car record);
+
+    List<Car> selectByCustomerId(int id);
 }

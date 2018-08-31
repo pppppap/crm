@@ -1,10 +1,14 @@
 package cn.gezhi.crm.customer.service;
 
 import cn.gezhi.crm.customer.dto.CustomerQueryDTO;
+import cn.gezhi.crm.customer.entity.Car;
 import cn.gezhi.crm.customer.entity.Customer;
 import cn.gezhi.crm.customer.entity.CustomerExample;
+import cn.gezhi.crm.customer.entity.House;
 import cn.gezhi.crm.customer.entity.vo.CustomerCustom;
 import cn.gezhi.crm.org.entity.PageModel;
+
+import java.util.List;
 
 /**
  * TODO
@@ -27,5 +31,11 @@ public interface EvaluateService {
 
     PageModel<CustomerCustom> getCustomerPage(CustomerQueryDTO queryDTO);
 
-    void saveHouse(int id, String uri);
+    void saveHouse(House house);
+
+    void saveCar(Car car);
+
+    List<House> getHouses(int id);
+
+    List<Car> getCar(int id);
 }

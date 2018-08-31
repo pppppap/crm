@@ -81,15 +81,13 @@
                 <select name="customerLevel">
                     <option value="0">客户等级</option>
                     <#if (queryDTO.customerLevel)??>
-                        <option value="优" ${(queryDTO.customerLevel=='优')?string('selected','')}>优</option>
-                        <option value="良" ${(queryDTO.customerLevel=='良')?string('selected','')}>良</option>
+                        <option value="高" ${(queryDTO.customerLevel=='高')?string('selected','')}>高</option>
                         <option value="中" ${(queryDTO.customerLevel=='中')?string('selected','')}>中</option>
-                        <option value="差" ${(queryDTO.customerLevel=='差')?string('selected','')}>差</option>
+                        <option value="低" ${(queryDTO.customerLevel=='低')?string('selected','')}>低</option>
                     <#else >
-                        <option value="优">优</option>
-                        <option value="良">良</option>
+                        <option value="高">高</option>
                         <option value="中">中</option>
-                        <option value="差">差</option>
+                        <option value="低">低</option>
                     </#if>
                 </select>
             </div>
@@ -126,7 +124,7 @@
             <th>贷款机构</th>
             <th>业务员</th>
             <th>办理时间</th>
-            <th width="150">操作</th>
+            <th width="100">操作</th>
         </tr>
         </thead>
         <tbody>
@@ -157,7 +155,6 @@
             </td>
             <td>
                 <a href="/evaluate/getOne/${i.id?c}" class="tablelink">详情</a>
-                <a href="#" class="tablelink">修改</a>
                 <a class="tablelink">删除</a>
             </td>
         </tr>

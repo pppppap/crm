@@ -1,9 +1,11 @@
 package cn.gezhi.crm.customer.service.impl;
 
+import cn.gezhi.crm.customer.dao.CarMapper;
 import cn.gezhi.crm.customer.dao.CustomerCustomMapper;
 import cn.gezhi.crm.customer.dao.CustomerMapper;
 import cn.gezhi.crm.customer.dao.HouseMapper;
 import cn.gezhi.crm.customer.dto.CustomerQueryDTO;
+import cn.gezhi.crm.customer.entity.Car;
 import cn.gezhi.crm.customer.entity.Customer;
 import cn.gezhi.crm.customer.entity.CustomerExample;
 import cn.gezhi.crm.customer.entity.House;
@@ -32,6 +34,10 @@ public class EvaluteServiceImpl implements EvaluateService {
 
     @Autowired
     private HouseMapper houseMapper;
+
+    @Autowired
+    private CarMapper carMapper;
+
     /**
      * 根据ID查询客户
      *
@@ -136,10 +142,19 @@ public class EvaluteServiceImpl implements EvaluateService {
         return getCustomerPage(queryDTO.page, queryDTO.pageSize, example);
     }
 
-    public void saveHouse(int id, String uri) {
-        House house=new House();
-        house.setCustomerId(id);
-        house.setUri(uri);
+    public void saveHouse(House house) {
         houseMapper.insert(house);
+    }
+
+    public void saveCar(Car car) {
+        carMapper.insert(car);
+    }
+
+    public List<House> getHouses(int id) {
+        return houseMapper.selectByCustomerId(id);
+    }
+
+    public List<Car> getCar(int id) {
+        return carMapper.selectByCustomerId(id);
     }
 }

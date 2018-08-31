@@ -8,6 +8,11 @@
 </head>
 <body>
 <div id="wrapper">
+    <div>
+        <#list cars as i>
+            <img src="${i.uri}"/>
+        </#list>
+    </div>
     <div id="container">
         <!--头部，相册选择和格式选择-->
         <div id="uploader">

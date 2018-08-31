@@ -34,7 +34,7 @@
         <h2>审批添加</h2></a></li>
     <li><a href="imglist.html" target="rightFrame"><img src="/images/icon03.png" title="申请列表"/>
         <h2>申请列表</h2></a></li>
-    <li><a href="tools.html" target="rightFrame"><img src="/images/icon04.png" title="客户列表"/>
+    <li><a href="/evaluate/show" target="rightFrame"><img src="/images/icon04.png" title="客户列表"/>
         <h2>客户列表</h2></a></li>
     <li><a href="tab.html" target="rightFrame"><img src="/images/icon06.png" title="系统设置"/>
         <h2>系统设置</h2></a></li>

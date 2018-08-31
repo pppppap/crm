@@ -178,4 +178,8 @@
       customer_id = #{customerId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByCustomerId" resultMap="BaseResultMap">
+    SELECT * from house WHERE customer_id=#{id}
+  </select>
 </mapper>

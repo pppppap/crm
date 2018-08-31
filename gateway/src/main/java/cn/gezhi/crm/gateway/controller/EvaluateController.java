@@ -2,8 +2,12 @@ package cn.gezhi.crm.gateway.controller;
 
 import cn.gezhi.crm.customer.dao.BankMapper;
 import cn.gezhi.crm.customer.dto.CustomerQueryDTO;
+import cn.gezhi.crm.customer.entity.Car;
+import cn.gezhi.crm.customer.entity.Customer;
+import cn.gezhi.crm.customer.entity.House;
 import cn.gezhi.crm.customer.entity.vo.CustomerCustom;
 import cn.gezhi.crm.customer.service.EvaluateService;
+import cn.gezhi.crm.gateway.dto.JsonResult;
 import cn.gezhi.crm.org.entity.PageModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -110,16 +115,32 @@ public class EvaluateController {
     }
 
     @RequestMapping("/getOne/{id}")
-    public String getOne(@PathVariable("id") int id, Model model) {
+    public String getOne(@PathVariable("id") int id, Model model, HttpServletRequest request) {
         model.addAttribute("customer", evaluateService.getById(id));
+        model.addAttribute("back_uri", request.getHeader("Referer"));
         return "customer_info";
 
     }
 
+    @RequestMapping("/do_update")
+    @ResponseBody
+    public JsonResult doUpdate(Customer customer) {
+        int n = evaluateService.update(customer);
+        JsonResult result = new JsonResult();
+        if (n > 0) {
+            result.setCode(200);
+            result.setMsg("更新成功");
+        } else {
+            result.setCode(404);
+            result.setMsg("更新失败");
+        }
+        return result;
+    }
 
     @RequestMapping(value = "/upload_house/{id}")
     public String uploadHouse(@PathVariable("id") int id, Model model) {
         model.addAttribute("id", id);
+        model.addAttribute("houses", evaluateService.getHouses(id));
         return "upload_house";
     }
 
@@ -131,12 +152,16 @@ public class EvaluateController {
             String ids = request.getParameter("uid");
             if (ids == null) return;
             int id = Integer.parseInt(ids);
-            String path = request.getSession().getServletContext().getRealPath("images/house/");//设置磁盘缓冲路径
+            String path = request.getSession().getServletContext().getRealPath("static/house/");//设置磁盘缓冲路径
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
                 if (!file.isEmpty()) {
                     try {
                         String name = saveFile(file, path);
+                        House house = new House();
+                        house.setCustomerId(id);
+                        house.setUri("/house/" + name);
+                        evaluateService.saveHouse(house);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -145,8 +170,10 @@ public class EvaluateController {
         }
     }
 
-    @RequestMapping(value = "/upload_car")
-    public String uploadCar() {
+    @RequestMapping(value = "/upload_car/{id}")
+    public String uploadCar(@PathVariable("id") int id, Model model) {
+        model.addAttribute("id", id);
+        model.addAttribute("cars", evaluateService.getCar(id));
         return "upload_car";
     }
 
@@ -158,12 +185,16 @@ public class EvaluateController {
             String ids = request.getParameter("uid");
             if (ids == null) return;
             int id = Integer.parseInt(ids);
-            String path = request.getSession().getServletContext().getRealPath("images/car/");//设置磁盘缓冲路径
+            String path = request.getSession().getServletContext().getRealPath("static/car/");//设置磁盘缓冲路径
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
                 if (!file.isEmpty()) {
                     try {
                         String name = saveFile(file, path);
+                        Car car = new Car();
+                        car.setCustomerId(id);
+                        car.setUri("/car/" + name);
+                        evaluateService.saveCar(car);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
