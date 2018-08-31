@@ -90,4 +90,14 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDTOS = userMapper.selectByExample(example);
         return new PageModel<UserDTO>(userDTOS);
     }
+
+    public UserDTO login(String username, String password) {
+        UserExample example = new UserExample();
+        UserExample.Criteria criteria = example.createCriteria();
+        criteria.andUsernameEqualTo(username.trim());
+        criteria.andPasswordEqualTo(password.trim());
+        List<UserDTO> userDTOS = userMapper.selectByExample(example);
+        if (userDTOS.isEmpty()) return null;
+        return userDTOS.get(0);
+    }
 }

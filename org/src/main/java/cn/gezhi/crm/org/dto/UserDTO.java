@@ -52,7 +52,6 @@ public class UserDTO {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", employee=" + employee.getName() +
                 '}';
     }
 }

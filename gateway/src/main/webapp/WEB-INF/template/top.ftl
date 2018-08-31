@@ -26,7 +26,7 @@
 </div>
 
 <ul class="nav">
-    <li><a href="#" target="rightFrame" class="selected"><img width="45px" height="45px"
+    <li><a href="dsf" target="rightFrame" class="selected"><img width="45px" height="45px"
                                                               src="/images/icon01.png" title="审批列表"/>
         <h2>审批列表</h2></a></li>
     <li><a href="imgtable.html" target="rightFrame"><img src="/images/icon05.png" width="45px" height="45px"

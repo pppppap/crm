@@ -15,10 +15,18 @@ import java.util.List;
  */
 public interface UserService {
     UserDTO getById(int id);
+
     List<UserDTO> getByExample(UserExample userExample);
+
     int update(User user);
+
     int save(User user);
+
     int deleteById(int id);
+
     PageModel<UserDTO> getUserPage(int page, int pageSize);
+
     PageModel<UserDTO> getByExamplePage(int page, int pageSize, UserExample example);
+
+    UserDTO login(String username, String password);
 }

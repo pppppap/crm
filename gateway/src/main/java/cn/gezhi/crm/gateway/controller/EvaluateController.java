@@ -152,7 +152,7 @@ public class EvaluateController {
             String ids = request.getParameter("uid");
             if (ids == null) return;
             int id = Integer.parseInt(ids);
-            String path = request.getSession().getServletContext().getRealPath("static/house/");//设置磁盘缓冲路径
+            String path = request.getSession().getServletContext().getRealPath("static/data/house/");//设置磁盘缓冲路径
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
                 if (!file.isEmpty()) {
@@ -160,7 +160,7 @@ public class EvaluateController {
                         String name = saveFile(file, path);
                         House house = new House();
                         house.setCustomerId(id);
-                        house.setUri("/house/" + name);
+                        house.setUri("/data/house/" + name);
                         evaluateService.saveHouse(house);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -185,7 +185,7 @@ public class EvaluateController {
             String ids = request.getParameter("uid");
             if (ids == null) return;
             int id = Integer.parseInt(ids);
-            String path = request.getSession().getServletContext().getRealPath("static/car/");//设置磁盘缓冲路径
+            String path = request.getSession().getServletContext().getRealPath("static/data/car/");//设置磁盘缓冲路径
             for (int i = 0; i < files.length; i++) {
                 MultipartFile file = files[i];
                 if (!file.isEmpty()) {
@@ -193,7 +193,7 @@ public class EvaluateController {
                         String name = saveFile(file, path);
                         Car car = new Car();
                         car.setCustomerId(id);
-                        car.setUri("/car/" + name);
+                        car.setUri("/data/car/" + name);
                         evaluateService.saveCar(car);
                     } catch (IOException e) {
                         e.printStackTrace();
