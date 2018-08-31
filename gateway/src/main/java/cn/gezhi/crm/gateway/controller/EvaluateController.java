@@ -9,11 +9,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * TODO
@@ -112,4 +115,76 @@ public class EvaluateController {
         return "customer_info";
 
     }
+
+
+    @RequestMapping(value = "/upload_house/{id}")
+    public String uploadHouse(@PathVariable("id") int id, Model model) {
+        model.addAttribute("id", id);
+        return "upload_house";
+    }
+
+    @RequestMapping(value = "/do_upload_house", method = RequestMethod.POST)
+    @ResponseBody
+    public void uploadHouse(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) {
+        //判断file数组不能为空并且长度大于0
+        if (files != null && files.length > 0) {
+            String ids = request.getParameter("uid");
+            if (ids == null) return;
+            int id = Integer.parseInt(ids);
+            String path = request.getSession().getServletContext().getRealPath("images/house/");//设置磁盘缓冲路径
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file = files[i];
+                if (!file.isEmpty()) {
+                    try {
+                        String name = saveFile(file, path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    @RequestMapping(value = "/upload_car")
+    public String uploadCar() {
+        return "upload_car";
+    }
+
+    @RequestMapping(value = "/do_upload_car", method = RequestMethod.POST)
+    @ResponseBody
+    public void uploadCar(@RequestParam("file") MultipartFile[] files, HttpServletRequest request) {
+        //判断file数组不能为空并且长度大于0
+        if (files != null && files.length > 0) {
+            String ids = request.getParameter("uid");
+            if (ids == null) return;
+            int id = Integer.parseInt(ids);
+            String path = request.getSession().getServletContext().getRealPath("images/car/");//设置磁盘缓冲路径
+            for (int i = 0; i < files.length; i++) {
+                MultipartFile file = files[i];
+                if (!file.isEmpty()) {
+                    try {
+                        String name = saveFile(file, path);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    private String saveFile(MultipartFile file, String path) throws IOException {
+        String fileName = file.getOriginalFilename();//真实文件名
+        int index = fileName.lastIndexOf(".");
+        String type = fileName.substring(index + 1);
+        String name = new SimpleDateFormat("yyyyMMddHHmm").format(new Date()) + ((int) (Math.random() * 9000) + 1000) + "." + type;
+        File filepath = new File(path);
+        if (!filepath.exists())
+            filepath.mkdirs();
+        // 文件保存路径
+        String savePath = path + name;
+        // 转存文件
+        file.transferTo(new File(savePath));
+        return name;
+    }
+
 }

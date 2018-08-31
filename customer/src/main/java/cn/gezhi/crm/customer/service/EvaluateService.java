@@ -26,4 +26,6 @@ public interface EvaluateService {
     PageModel<CustomerCustom> getCustomerPage(int page, int pageSize, CustomerExample customerExample);
 
     PageModel<CustomerCustom> getCustomerPage(CustomerQueryDTO queryDTO);
+
+    void saveHouse(int id, String uri);
 }

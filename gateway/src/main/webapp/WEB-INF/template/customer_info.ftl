@@ -5,6 +5,8 @@
     <title>新增客户信息</title>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link href="/css/employee.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/upload/webuploader.css"/>
+    <link rel="stylesheet" type="text/css" href="/upload/style.css"/>
 </head>
 <style>
     .dfinput {
@@ -74,9 +76,13 @@
             <li><label>客户关注等级</label><label>A</label></li>
             <li><label>客户等级</label><label>优</label></li>
             <li><label>办理时间</label><label></label></li>
-            <li><label>房产证</label><input type="file" multiple></li>
-            <li><label>汽车登记证书</label><input type="file" multiple></li>
-            <li><label>&nbsp;</label><input name="" type="button" class="btn" value="确认新增"/></li>
+            <li><label>房产证</label>
+                <a href="/evaluate/upload_house/${customer.id?c}"><input type="button" class="btn" value="房产信息"></a>
+            </li>
+            <li><label>汽车登记证书</label>
+                <a href="/evaluate/upload_car/${customer.id?c}"><input type="button" class="btn" value="房产信息"></a>
+            </li>
+            <li><label>&nbsp;</label><input type="button" class="btn" value="确认新增" onclick="upload_house()"/></li>
         </ul>
     </form>
 </div>
@@ -84,12 +90,15 @@
 </#escape>
 </html>
 <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+
 <script>
     function add_input(ele) {
         var input = $(ele).prev();
-        var _add=input.clone()
+        var _add = input.clone()
 
         input.after(_add.prop("outerHTML"))
         input.next('input').val('')
     }
+
 </script>
+

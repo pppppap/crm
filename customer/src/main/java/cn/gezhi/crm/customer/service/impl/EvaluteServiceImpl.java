@@ -2,9 +2,11 @@ package cn.gezhi.crm.customer.service.impl;
 
 import cn.gezhi.crm.customer.dao.CustomerCustomMapper;
 import cn.gezhi.crm.customer.dao.CustomerMapper;
+import cn.gezhi.crm.customer.dao.HouseMapper;
 import cn.gezhi.crm.customer.dto.CustomerQueryDTO;
 import cn.gezhi.crm.customer.entity.Customer;
 import cn.gezhi.crm.customer.entity.CustomerExample;
+import cn.gezhi.crm.customer.entity.House;
 import cn.gezhi.crm.customer.entity.vo.CustomerCustom;
 import cn.gezhi.crm.customer.service.EvaluateService;
 import cn.gezhi.crm.org.entity.PageModel;
@@ -28,6 +30,8 @@ public class EvaluteServiceImpl implements EvaluateService {
     @Autowired
     private CustomerCustomMapper customerCustomMapper;
 
+    @Autowired
+    private HouseMapper houseMapper;
     /**
      * 根据ID查询客户
      *
@@ -132,4 +136,10 @@ public class EvaluteServiceImpl implements EvaluateService {
         return getCustomerPage(queryDTO.page, queryDTO.pageSize, example);
     }
 
+    public void saveHouse(int id, String uri) {
+        House house=new House();
+        house.setCustomerId(id);
+        house.setUri(uri);
+        houseMapper.insert(house);
+    }
 }
