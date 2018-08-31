@@ -23,14 +23,15 @@
     <form action="/employee/do_update" method="post" id="update_employee">
         <#escape x as x!"">
             <ul class="forminfo">
-                <li><label>员工编号</label><input name="id" type="text" class="dfinput" value="${employee.id!?c}" readonly/></li>
+                <li><label>员工编号</label><input name="id" type="text" class="dfinput" value="${employee.id!?c}" readonly/>
+                </li>
                 <li><label>员工姓名</label><input name="name" type="text" class="dfinput" value="${employee.name!}"/><i
                         class="required">*</i></li>
                 <li>
                     <label>部门</label>
                     <select name="depId">
                         <#list departments! as i>
-                            <#if employee.career.id=employee.career.id>
+                            <#if employee.department.id=i.id>
                                 <option value="${i.id?c}" selected>${i.depName}</option>
                             <#else >
                                 <option value="${i.id?c}">${i.depName}</option>
@@ -43,7 +44,7 @@
                     <label>职位</label>
                     <select name="careeId">
                         <#list careers as i>
-                            <#if employee.career.id=employee.career.id>
+                            <#if employee.career.id=i.id>
                        <option value="${i.id?c}" selected>${i.careerName!}</option>
                             <#else >
                        <option value="${i.id?c}">${i.careerName!}</option>
