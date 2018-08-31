@@ -50,9 +50,6 @@
             <ignoreColumn column="car_id"/>
             <ignoreColumn column="house_id"/>
         </table>
-        <table schema="" tableName="car"></table>
-        <table schema="" tableName="house"></table>
-        <table schema="" tableName="bank"></table>
         <!-- 有些表的字段需要指定java类型
        <table schema="" tableName="">
          <columnOverride column="" javaType="" />

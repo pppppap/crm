@@ -50,14 +50,24 @@
             <li>
                 <label>性别</label>
                 <select name="sex">
-                    <option value="男">&nbsp;&nbsp;男&nbsp;</option>
-                    <option value="女">&nbsp;&nbsp;女&nbsp;</option>
+                    <option value="0">性别</option>
+                    <#if customer.sex=='男'>
+                        <option value="男" selected>男</option>
+                        <option value="女">女</option>
+                    <#elseif customer.sex=='女'>
+                        <option value="男">男</option>
+                        <option value="女" selected>女</option>
+                    <#else>
+                        <option value="无">无</option>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </#if>
                 </select>
             </li>
             <li>
                 <label>电话</label>
                 <#if customer.tel??>
-                    <#list customer.tel?split("|") as t>
+                    <#list customer.tel?split(",") as t>
                         <input name="tel" value="${t}" type="text" class="dfinput"/>
                     </#list>
                 <#else >

@@ -18,6 +18,7 @@
     <result column="customer_level" property="customerLevel" jdbcType="CHAR" />
     <result column="date" property="date" jdbcType="DATE" />
     <result column="security_id" property="securityId" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -79,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, name, idcard, tel, loan, bank_id, realloan, process, common, note, salesman_id, 
-    attention_level, evalute_id, customer_level, date, security_id
+    attention_level, evalute_id, customer_level, date, security_id, sex
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.gezhi.crm.customer.entity.CustomerExample" >
     select
@@ -117,13 +118,13 @@
       realloan, process, common, 
       note, salesman_id, attention_level, 
       evalute_id, customer_level, date, 
-      security_id)
+      security_id, sex)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
       #{tel,jdbcType=VARCHAR}, #{loan,jdbcType=DECIMAL}, #{bankId,jdbcType=INTEGER}, 
       #{realloan,jdbcType=DECIMAL}, #{process,jdbcType=VARCHAR}, #{common,jdbcType=DECIMAL}, 
       #{note,jdbcType=VARCHAR}, #{salesmanId,jdbcType=INTEGER}, #{attentionLevel,jdbcType=CHAR}, 
       #{evaluteId,jdbcType=INTEGER}, #{customerLevel,jdbcType=CHAR}, #{date,jdbcType=DATE}, 
-      #{securityId,jdbcType=VARCHAR})
+      #{securityId,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.gezhi.crm.customer.entity.Customer" >
     insert into customer
@@ -176,6 +177,9 @@
       <if test="securityId != null" >
         security_id,
       </if>
+      <if test="sex != null" >
+        sex,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -225,6 +229,9 @@
       </if>
       <if test="securityId != null" >
         #{securityId,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -285,6 +292,9 @@
       <if test="record.securityId != null" >
         security_id = #{record.securityId,jdbcType=VARCHAR},
       </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -307,7 +317,8 @@
       evalute_id = #{record.evaluteId,jdbcType=INTEGER},
       customer_level = #{record.customerLevel,jdbcType=CHAR},
       date = #{record.date,jdbcType=DATE},
-      security_id = #{record.securityId,jdbcType=VARCHAR}
+      security_id = #{record.securityId,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -360,6 +371,9 @@
       <if test="securityId != null" >
         security_id = #{securityId,jdbcType=VARCHAR},
       </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -379,7 +393,8 @@
       evalute_id = #{evaluteId,jdbcType=INTEGER},
       customer_level = #{customerLevel,jdbcType=CHAR},
       date = #{date,jdbcType=DATE},
-      security_id = #{securityId,jdbcType=VARCHAR}
+      security_id = #{securityId,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -35,6 +35,8 @@ public class Customer {
 
     protected String securityId;
 
+    protected String sex;
+
     public Integer getId() {
         return id;
     }
@@ -161,5 +163,13 @@ public class Customer {
 
     public void setSecurityId(String securityId) {
         this.securityId = securityId == null ? null : securityId.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 }

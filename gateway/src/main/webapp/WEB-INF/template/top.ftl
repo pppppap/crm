@@ -47,11 +47,7 @@
         <li><a href="../../index.html" target="_parent">退出</a></li>
 
     </ul>
-    <div class="user">
-        <span></span>
-        <i>申请消息</i>
-        <b>5</b>
-    </div>
+
 </div>
 </body>
 </html>

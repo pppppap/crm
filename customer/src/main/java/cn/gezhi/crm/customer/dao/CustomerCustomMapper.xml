@@ -18,6 +18,7 @@
         <result column="customer_level" property="customerLevel" jdbcType="CHAR"/>
         <result column="date" property="date" jdbcType="DATE"/>
         <result column="security_id" property="securityId" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="CHAR" />
         <association property="bank" column="bank_id" select="cn.gezhi.crm.customer.dao.BankMapper.selectByPrimaryKey"/>
         <association property="salesman" column="salesman_id" select="employee_select"/>
         <association property="evaluteman" column="evalute_id" select="employee_select"/>
@@ -55,7 +56,7 @@
 
     <sql id="Base_Column_List">
     id, name, idcard, tel, loan, bank_id, realloan, process, common, note, salesman_id,
-    attention_level, evalute_id, customer_level, date, security_id
+    attention_level, evalute_id, customer_level, date, security_id,sex
     </sql>
     <sql id="Example_Where_Clause">
         <where>

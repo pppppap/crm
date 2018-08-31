@@ -137,7 +137,7 @@
             <td>${i.name}</td>
             <td>
             <#if i.tel??>
-            <#list i.tel?split("|") as t>
+            <#list i.tel?split(",") as t>
                 <label style="float: left;">${t}</label>
             </#list>
             </#if>

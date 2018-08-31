@@ -17,9 +17,13 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:spring-placeholder.xml", "classpath:spring/application*.xml"})
 public class CustomerTest {
+    @Autowired
+    EvaluateService evaluateService;
 
     @Test
     public void test1() {
+        Object o = evaluateService.getById(1);
+        System.out.println(o);
     }
 
 }
